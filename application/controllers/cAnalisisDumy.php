@@ -66,16 +66,91 @@ class cAnalisisDumy extends CI_Controller
         $c2_m = $norm_m[1];
 
 
+        echo '<table border="1">';
+        echo '<tr>';
+        echo '<td>R</td>';
+        echo '<td>F</td>';
+        echo '<td>M</td>';
+        echo '<td>Centroid 1</td>';
+        echo '<td>Centroid 2</td>';
+        echo '<td>Status Klaster</td>';
+        echo '</tr>';
         //menentukan keseluruhan c1 untuk semua pelanggan
+        $klaster = array();
+        $centroid1 = array();
+        $centroid2 = array();
         for ($d = 0; $d < sizeof($norm_r); $d++) {
-            $centroid1 = sqrt((pow(($norm_r[$d] - $c1_r), 2)) + (pow(($norm_f[$d] - $c1_f), 2)) + (pow(($norm_m[$d] - $c1_m), 2)));
-            $centroid2 = sqrt((pow(($norm_r[$d] - $c2_r), 2)) + (pow(($norm_f[$d] - $c2_f), 2)) + (pow(($norm_m[$d] - $c2_m), 2)));
+            $centroid1[] = sqrt((pow(($norm_r[$d] - $c1_r), 2)) + (pow(($norm_f[$d] - $c1_f), 2)) + (pow(($norm_m[$d] - $c1_m), 2)));
+            $centroid2[] = sqrt((pow(($norm_r[$d] - $c2_r), 2)) + (pow(($norm_f[$d] - $c2_f), 2)) + (pow(($norm_m[$d] - $c2_m), 2)));
+            echo '<tr>';
+            echo '<td>' . $norm_r[$d] . '</td>';
+            echo '<td>' . $norm_f[$d] . '</td>';
+            echo '<td>' . $norm_m[$d] . '</td>';
+            echo '<td>' . $centroid1[$d] . '</td>';
+            echo '<td>' . $centroid2[$d] . '</td>';
 
-            echo $centroid1 . ' | ' . $centroid2 . ' Min: ' . min($centroid1, $centroid2);
-            $data_min = min($centroid1, $centroid2);
-            if ($data_min == $centroid1) {
+            $data_min = min($centroid1[$d], $centroid2[$d]);
+            if ($data_min == $centroid1[$d]) {
+                $klaster[] = '1';
+                echo '<td>Klaster 1</td>';
+            } else if ($data_min == $centroid2[$d]) {
+                $klaster[] = '2';
+                echo '<td>Klaster 2</td>';
+            }
+            echo '</tr>';
+        }
+        echo '</table>';
+
+        // ------------------------------------melakukan iterasi kedua
+
+        for ($e = 0; $e < sizeof($norm_r); $e++) {
+            $iterasi_pertama[] = ([$norm_r[$e], $norm_f[$e], $norm_m[$e], $centroid1[$e], $centroid2[$e], $klaster[$e]]);
+        }
+
+        $c1_r2 = 0;
+        $c1_f2 = 0;
+        $c1_m2 = 0;
+        $jml_c1 = 0;
+
+        $c2_r2 = 0;
+        $c2_f2 = 0;
+        $c2_m2 = 0;
+        $jml_c2 = 0;
+
+        for ($iterasi = 0; $iterasi < sizeof($iterasi_pertama); $iterasi++) {
+            if ($iterasi_pertama[$iterasi][5] == '1') {
+                // echo $iterasi_pertama[$iterasi][0] . ' | ' . $iterasi_pertama[$iterasi][5];
+                // echo '<br>';
+                $jml_c1 += 1;
+                $c1_r2 += $iterasi_pertama[$iterasi][0];
+                $c1_f2 += $iterasi_pertama[$iterasi][1];
+                $c1_m2 += $iterasi_pertama[$iterasi][2];
+            } else if ($iterasi_pertama[$iterasi][5] == '2') {
+                $jml_c2 += 1;
+                $c2_r2 += $iterasi_pertama[$iterasi][0];
+                $c2_f2 += $iterasi_pertama[$iterasi][1];
+                $c2_m2 += $iterasi_pertama[$iterasi][2];
+            }
+        }
+        $k_c1_r = $c1_r2 / $jml_c1;
+        $k_c1_f = $c1_f2 / $jml_c1;
+        $k_c1_m = $c1_f2 / $jml_c1;
+
+        $k_c2_r = $c2_r2 / $jml_c2;
+        $k_c2_f = $c2_f2 / $jml_c2;
+        $k_c2_m = $c2_f2 / $jml_c2;
+
+        for ($f = 0; $f < sizeof($iterasi_pertama); $f++) {
+            $centroid12[] = sqrt((pow(($iterasi_pertama[$f][0] - $k_c1_r), 2)) + (pow(($iterasi_pertama[$f][1] - $k_c1_f), 2)) + (pow(($iterasi_pertama[$f][2] - $k_c1_m), 2)));
+            $centroid22[] = sqrt((pow(($iterasi_pertama[$f][0] - $k_c2_r), 2)) + (pow(($iterasi_pertama[$f][1] - $k_c2_f), 2)) + (pow(($iterasi_pertama[$f][2] - $k_c2_m), 2)));
+
+            echo $iterasi_pertama[$f][0] . ' | ' . $iterasi_pertama[$f][1] . ' | ' . $iterasi_pertama[$f][2] . ' | ' . $centroid12[$f] . ' | ' . $centroid22[$f];
+            $data_min2 = min($centroid12[$f], $centroid22[$f]);
+            if ($data_min2 == $centroid12[$f]) {
+                // $klaster[] = '1';
                 echo 'Klaster 1';
-            } else if ($data_min == $centroid2) {
+            } else if ($data_min2 == $centroid22[$f]) {
+                // $klaster[] = '2';
                 echo 'Klaster 2';
             }
             echo '<br>';
