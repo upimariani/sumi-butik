@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jul 2023 pada 03.07
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Generation Time: Aug 14, 2023 at 06:27 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_dummy`
+-- Table structure for table `chatting`
+--
+
+CREATE TABLE `chatting` (
+  `id_chatting` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `pelanggan_send` text NOT NULL,
+  `admin_send` text NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_dummy`
 --
 
 CREATE TABLE `data_dummy` (
@@ -38,7 +54,7 @@ CREATE TABLE `data_dummy` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `data_dummy`
+-- Dumping data for table `data_dummy`
 --
 
 INSERT INTO `data_dummy` (`no`, `tgl_transaksi_terakhir`, `id_pelanggan`, `recency`, `frequency`, `monetary`, `status`) VALUES
@@ -103,25 +119,251 @@ INSERT INTO `data_dummy` (`no`, `tgl_transaksi_terakhir`, `id_pelanggan`, `recen
 (59, '31/08/2020', 'P59', '12', '6', '720000', 0),
 (60, '15/08/2020', 'P60', '28', '4', '475000', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_po`
+--
+
+CREATE TABLE `detail_po` (
+  `id_detail` int(11) NOT NULL,
+  `id_po` varchar(30) NOT NULL,
+  `id_produk` varchar(10) NOT NULL,
+  `qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diskon`
+--
+
+CREATE TABLE `diskon` (
+  `id_diskon` int(11) NOT NULL,
+  `id_produk` int(11) NOT NULL,
+  `nama_diskon` varchar(125) NOT NULL,
+  `tgl_selesai` varchar(15) NOT NULL,
+  `diskon` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kritik_saran`
+--
+
+CREATE TABLE `kritik_saran` (
+  `id_kritik_saran` int(11) NOT NULL,
+  `id_po` int(11) NOT NULL,
+  `isi_kritik_saran` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pelanggan`
+--
+
+CREATE TABLE `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL,
+  `nm_pel` varchar(125) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_tlpon` varchar(15) NOT NULL,
+  `username` varchar(125) NOT NULL,
+  `password` varchar(125) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `po`
+--
+
+CREATE TABLE `po` (
+  `id_po` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
+  `tgl_po` varchar(15) NOT NULL,
+  `total_bayar` varchar(15) NOT NULL,
+  `status_order` int(11) NOT NULL,
+  `bukti_pembayaran` text NOT NULL,
+  `alamat_detail` text NOT NULL,
+  `prov` varchar(20) NOT NULL,
+  `kota` varchar(20) NOT NULL,
+  `ongkir` varchar(20) NOT NULL,
+  `estimasi` varchar(20) NOT NULL,
+  `expedisi` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk`
+--
+
+CREATE TABLE `produk` (
+  `id_produk` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
+  `nama_produk` varchar(125) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `harga` varchar(15) NOT NULL,
+  `stok` int(11) NOT NULL,
+  `gambar` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `nama_user` varchar(125) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_hp` varchar(15) NOT NULL,
+  `username` varchar(125) NOT NULL,
+  `password` varchar(125) NOT NULL,
+  `level_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `data_dummy`
+-- Indexes for table `chatting`
+--
+ALTER TABLE `chatting`
+  ADD PRIMARY KEY (`id_chatting`);
+
+--
+-- Indexes for table `data_dummy`
 --
 ALTER TABLE `data_dummy`
   ADD PRIMARY KEY (`no`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- Indexes for table `detail_po`
+--
+ALTER TABLE `detail_po`
+  ADD PRIMARY KEY (`id_detail`);
+
+--
+-- Indexes for table `diskon`
+--
+ALTER TABLE `diskon`
+  ADD PRIMARY KEY (`id_diskon`);
+
+--
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indexes for table `kritik_saran`
+--
+ALTER TABLE `kritik_saran`
+  ADD PRIMARY KEY (`id_kritik_saran`);
+
+--
+-- Indexes for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`);
+
+--
+-- Indexes for table `po`
+--
+ALTER TABLE `po`
+  ADD PRIMARY KEY (`id_po`);
+
+--
+-- Indexes for table `produk`
+--
+ALTER TABLE `produk`
+  ADD PRIMARY KEY (`id_produk`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `data_dummy`
+-- AUTO_INCREMENT for table `chatting`
+--
+ALTER TABLE `chatting`
+  MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `data_dummy`
 --
 ALTER TABLE `data_dummy`
   MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT for table `detail_po`
+--
+ALTER TABLE `detail_po`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `diskon`
+--
+ALTER TABLE `diskon`
+  MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kritik_saran`
+--
+ALTER TABLE `kritik_saran`
+  MODIFY `id_kritik_saran` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `po`
+--
+ALTER TABLE `po`
+  MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `produk`
+--
+ALTER TABLE `produk`
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
