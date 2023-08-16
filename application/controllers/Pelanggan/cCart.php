@@ -33,6 +33,24 @@ class cCart extends CI_Controller
 		$this->session->set_flashdata('success', 'Produk Berhasil Masuk Keranjang!');
 		redirect('Pelanggan/cHome');
 	}
+	public function delete($rowid)
+	{
+		$this->cart->remove($rowid);
+		redirect('Pelanggan/cCart');
+	}
+	public function update_cart()
+	{
+		$i = 1;
+		foreach ($this->cart->contents() as $items) {
+			$data = array(
+				'rowid'  => $items['rowid'],
+				'qty'    => $this->input->post($i . '[qty]')
+			);
+			$this->cart->update($data);
+			$i++;
+		}
+		redirect('Pelanggan/cCart');
+	}
 }
 
 /* End of file cCart.php */

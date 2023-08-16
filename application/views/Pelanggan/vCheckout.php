@@ -22,84 +22,55 @@
 					here to enter your code.</h6>
 			</div>
 		</div>
-		<form action="#" class="checkout__form">
+		<form action="<?= base_url('Pelanggan/cCheckout/order') ?>" method="POST" class="checkout__form">
 			<div class="row">
 				<div class="col-lg-8">
 					<h5>Billing detail</h5>
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="checkout__form__input">
-								<p>First Name <span>*</span></p>
+								<p>Nama Pelanggan <span>*</span></p>
 								<input type="text">
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="checkout__form__input">
-								<p>Last Name <span>*</span></p>
+								<p>No Telepon <span>*</span></p>
 								<input type="text">
 							</div>
 						</div>
 						<div class="col-lg-12">
 							<div class="checkout__form__input">
-								<p>Country <span>*</span></p>
-								<input type="text">
+								<p>Alamat Detail <span>*</span></p>
+								<input name="alamat" type="text">
+							</div>
+
+							<div class="checkout__form__input">
+								<p>Provinsi <span>*</span></p>
+								<select name="provinsi" class="form-control mb-4" required>
+
+								</select>
 							</div>
 							<div class="checkout__form__input">
-								<p>Address <span>*</span></p>
-								<input type="text" placeholder="Street Address">
-								<input type="text" placeholder="Apartment. suite, unite ect ( optinal )">
+								<p>Kota <span>*</span></p>
+								<select name="kota" class="form-control mb-4">
+
+								</select>
 							</div>
 							<div class="checkout__form__input">
-								<p>Town/City <span>*</span></p>
-								<input type="text">
+								<p>Expedisi <span>*</span></p>
+								<select name="expedisi" class="form-control mb-4">
+
+								</select>
 							</div>
 							<div class="checkout__form__input">
-								<p>Country/State <span>*</span></p>
-								<input type="text">
-							</div>
-							<div class="checkout__form__input">
-								<p>Postcode/Zip <span>*</span></p>
-								<input type="text">
+								<p>Paket <span>*</span></p>
+								<select name="paket" class="form-control mb-4">
+
+								</select>
 							</div>
 						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6">
-							<div class="checkout__form__input">
-								<p>Phone <span>*</span></p>
-								<input type="text">
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6">
-							<div class="checkout__form__input">
-								<p>Email <span>*</span></p>
-								<input type="text">
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="checkout__form__checkbox">
-								<label for="acc">
-									Create an acount?
-									<input type="checkbox" id="acc">
-									<span class="checkmark"></span>
-								</label>
-								<p>Create am acount by entering the information below. If you are a returing
-									customer login at the <br />top of the page</p>
-							</div>
-							<div class="checkout__form__input">
-								<p>Account Password <span>*</span></p>
-								<input type="text">
-							</div>
-							<div class="checkout__form__checkbox">
-								<label for="note">
-									Note about your order, e.g, special noe for delivery
-									<input type="checkbox" id="note">
-									<span class="checkmark"></span>
-								</label>
-							</div>
-							<div class="checkout__form__input">
-								<p>Oder notes <span>*</span></p>
-								<input type="text" placeholder="Note about your order, e.g, special noe for delivery">
-							</div>
-						</div>
+
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -111,37 +82,27 @@
 									<span class="top__text">Product</span>
 									<span class="top__text__right">Total</span>
 								</li>
-								<li>01. Chain buck bag <span>$ 300.0</span></li>
-								<li>02. Zip-pockets pebbled<br /> tote briefcase <span>$ 170.0</span></li>
-								<li>03. Black jean <span>$ 170.0</span></li>
-								<li>04. Cotton shirt <span>$ 110.0</span></li>
+								<?php
+								foreach ($this->cart->contents() as $key => $value) {
+								?>
+									<li><?= $value['name'] ?><span>Rp. <?= number_format($value['qty'] * $value['price']) ?></span></li>
+								<?php
+								}
+								?>
+
 							</ul>
 						</div>
 						<div class="checkout__order__total">
 							<ul>
-								<li>Subtotal <span>$ 750.0</span></li>
-								<li>Total <span>$ 750.0</span></li>
+								<li>Subtotal <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
+								<li>Total <span id="total_bayar"> </span></li>
 							</ul>
 						</div>
-						<div class="checkout__order__widget">
-							<label for="o-acc">
-								Create an acount?
-								<input type="checkbox" id="o-acc">
-								<span class="checkmark"></span>
-							</label>
-							<p>Create am acount by entering the information below. If you are a returing customer
-								login at the top of the page.</p>
-							<label for="check-payment">
-								Cheque payment
-								<input type="checkbox" id="check-payment">
-								<span class="checkmark"></span>
-							</label>
-							<label for="paypal">
-								PayPal
-								<input type="checkbox" id="paypal">
-								<span class="checkmark"></span>
-							</label>
-						</div>
+
+						<input type="text" name="estimasi">
+						<input type="text" name="ongkir">
+						<input type="text" name="total_bayar">
+						<input type="text" name="subtotal" value="<?= $this->cart->total() ?>">
 						<button type="submit" class="site-btn">Place oder</button>
 					</div>
 				</div>
@@ -207,3 +168,180 @@
 	</div>
 </div>
 <!-- Instagram End -->
+<!-- Footer Section Begin -->
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-7">
+				<div class="footer__about">
+					<div class="footer__logo">
+						<a href="./index.html"><img src="img/logo.png" alt=""></a>
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+						cilisis.</p>
+					<div class="footer__payment">
+						<a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+						<a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+						<a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+						<a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+						<a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-3 col-sm-5">
+				<div class="footer__widget">
+					<h6>Quick links</h6>
+					<ul>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Blogs</a></li>
+						<li><a href="#">Contact</a></li>
+						<li><a href="#">FAQ</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-3 col-sm-4">
+				<div class="footer__widget">
+					<h6>Account</h6>
+					<ul>
+						<li><a href="#">My Account</a></li>
+						<li><a href="#">Orders Tracking</a></li>
+						<li><a href="#">Checkout</a></li>
+						<li><a href="#">Wishlist</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-8 col-sm-8">
+				<div class="footer__newslatter">
+					<h6>NEWSLETTER</h6>
+					<form action="#">
+						<input type="text" placeholder="Email">
+						<button type="submit" class="site-btn">Subscribe</button>
+					</form>
+					<div class="footer__social">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-youtube-play"></i></a>
+						<a href="#"><i class="fa fa-instagram"></i></a>
+						<a href="#"><i class="fa fa-pinterest"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				<div class="footer__copyright__text">
+					<p>Copyright &copy; <script>
+							document.write(new Date().getFullYear());
+						</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+				</div>
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Search Begin -->
+<div class="search-model">
+	<div class="h-100 d-flex align-items-center justify-content-center">
+		<div class="search-close-switch">+</div>
+		<form class="search-model-form">
+			<input type="text" id="search-input" placeholder="Search here.....">
+		</form>
+	</div>
+</div>
+<!-- Search End -->
+
+<!-- Js Plugins -->
+<script src="<?= base_url('asset/ashion-master/') ?>js/jquery-3.3.1.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/bootstrap.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/jquery.magnific-popup.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/jquery-ui.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/mixitup.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/jquery.countdown.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/jquery.slicknav.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/owl.carousel.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/jquery.nicescroll.min.js"></script>
+<script src="<?= base_url('asset/ashion-master/') ?>js/main.js"></script>
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			type: "POST",
+			url: "http://localhost/sumi-butik/pelanggan/ongkir/provinsi",
+			success: function(hasil_provinsi) {
+				console.log(hasil_provinsi);
+				$("select[name=provinsi]").html(hasil_provinsi);
+			}
+		});
+
+		$("select[name=provinsi]").on("change", function() {
+			var id_provinsi_terpilih = $("option:selected", this).attr("id_provinsi");
+			$.ajax({
+				type: "POST",
+				url: "http://localhost/sumi-butik/pelanggan/ongkir/kota",
+				data: 'id_provinsi=' + id_provinsi_terpilih,
+				success: function(hasil_kota) {
+					$("select[name=kota]").html(hasil_kota);
+				}
+			});
+		});
+
+		$("select[name=kota]").on("change", function() {
+			$.ajax({
+				type: "POST",
+				url: "http://localhost/sumi-butik/pelanggan/ongkir/expedisi",
+				success: function(hasil_expedisi) {
+					$("select[name=expedisi]").html(hasil_expedisi);
+				}
+			});
+		});
+
+
+		$("select[name=expedisi]").on("change", function() {
+			//mendapatkan expedisi terpilih
+			var expedisi_terpilih = $("select[name=expedisi]").val()
+
+			//mendapatkan id kota tujuan terpilih
+			var id_kota_tujuan_terpilih = $("option:selected", "select[name=kota]").attr('id_kota');
+
+			//alert(total_berat);
+			$.ajax({
+				type: "POST",
+				url: "http://localhost/sumi-butik/pelanggan/ongkir/paket",
+				data: 'expedisi=' + expedisi_terpilih + '&id_kota=' + id_kota_tujuan_terpilih + '&berat=1000',
+				success: function(hasil_paket) {
+					$("select[name=paket]").html(hasil_paket);
+				}
+			});
+		});
+
+
+		$("select[name=paket]").on("change", function() {
+			//menampilkan ongkir
+			var dataongkir = $("option:selected", this).attr('ongkir');
+			var reverse = dataongkir.toString().split('').reverse().join(''),
+				ribuan_ongkir = reverse.match(/\d{1,3}/g);
+			ribuan_ongkir = ribuan_ongkir.join(',').split('').reverse().join('');
+			//alert(dataongkir);
+			$("#ongkir").html("Rp. " + ribuan_ongkir)
+			//menghitung total bayar
+			var ongkir = $("option:selected", this).attr('ongkir');
+			var total_bayar = parseInt(ongkir) + parseInt(<?= $this->cart->total() ?>);
+
+			var reverse2 = total_bayar.toString().split('').reverse().join(''),
+				ribuan_total = reverse2.match(/\d{1,3}/g);
+			ribuan_total = ribuan_total.join(',').split('').reverse().join('');
+			$("#total_bayar").html("Rp. " + ribuan_total);
+
+			//estimasi dan ongkir
+			var estimasi = $("option:selected", this).attr('estimasi');
+			$("input[name=estimasi]").val(estimasi);
+			$("input[name=ongkir]").val(dataongkir);
+			$("input[name=total_bayar]").val(total_bayar);
+		});
+	});
+</script>
+</body>
+
+</html>

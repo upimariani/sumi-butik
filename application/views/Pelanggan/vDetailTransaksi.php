@@ -5,7 +5,7 @@
 			<div class="col-lg-12">
 				<div class="breadcrumb__links">
 					<a href="./index.html"><i class="fa fa-home"></i> Home</a>
-					<span>Shopping cart</span>
+					<span>Detail Pesanan</span>
 				</div>
 			</div>
 		</div>
@@ -16,9 +16,23 @@
 <!-- Shop Cart Section Begin -->
 <section class="shop-cart spad">
 	<div class="container">
-		<?php echo form_open('Pelanggan/cCart/update_cart'); ?>
 		<div class="row">
 			<div class="col-lg-12">
+				<?php
+				if ($this->session->userdata('success') != '') {
+				?>
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<div class="alert-icon">
+							<i class="zmdi zmdi-notifications-none"></i>
+						</div>
+						<div class="alert-message">
+							<span><strong>Success!</strong> <?= $this->session->userdata('success') ?></span>
+						</div>
+					</div>
+				<?php
+				}
+				?>
 				<div class="shop__cart__table">
 
 					<table>
@@ -28,31 +42,27 @@
 								<th>Price</th>
 								<th>Quantity</th>
 								<th>Total</th>
-								<th></th>
+								<th>Subtotal</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-							$i = 1;
-							foreach ($this->cart->contents() as $key => $value) {
+							foreach ($transaksi['detail_po'] as $key => $value) {
 							?>
-								<tr>
-									<td class="cart__product__item">
-										<img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $value['gambar']) ?>" alt="">
-										<div class="cart__product__item__title">
-											<h6><?= $value['name'] ?></h6>
+								<tr class="table_row">
+									<td class="column-1">
+										<div>
+											<img style="width: 50px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>" alt="IMG">
 										</div>
 									</td>
-									<td class="cart__price">Rp. <?= number_format($value['price']) ?></td>
-									<td class="cart__quantity">
-										<input class="form-control" size="2" name="<?= $i . '[qty]' ?>" min="1" max="<?= $value['stok'] ?>" type="number" value="<?= $value['qty'] ?>">
-
+									<td class="column-2"><?= $value->nama_produk ?></td>
+									<td class="column-3">Rp. <?= number_format($value->harga - ($value->diskon / 100 * $value->harga))  ?></td>
+									<td class="column-4">
+										<?= $value->qty ?>
 									</td>
-									<td class="cart__total">Rp. <?= number_format($value['price'] * $value['qty']) ?></td>
-									<td class="cart__close"><a href="<?= base_url('Pelanggan/cCart/delete/' . $value['rowid']) ?>"><span class="icon_close"></span></a></td>
+									<td class="column-5">Rp. <?= number_format(($value->harga - ($value->diskon / 100 * $value->harga)) * $value->qty)  ?></td>
 								</tr>
 							<?php
-								$i++;
 							}
 							?>
 						</tbody>
@@ -63,31 +73,33 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="cart__btn">
-					<a href="<?= base_url('Pelanggan/cHome') ?>">Continue Shopping</a>
+					<a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Kembali</a>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6">
-				<div class="cart__btn update__btn">
-					<button type="submit" class="btn btn-light"><span class="icon_loading"></span> Update cart</button>
+			<?php
+			if ($transaksi['po']->bukti_pembayaran == '0') {
+			?>
+				<div class="col-lg-4 offset-lg-2">
+					<?php echo form_open_multipart('Pelanggan/cPesananSaya/bayar/' . $transaksi['po']->id_po); ?>
+					<div class="cart__total__procced">
+						<h6>PEMBAYARAN</h6>
+						<ul>
+							<li>Nama BANK <span>BRI</span></li>
+							<li>Atas Nama <span>TOKO SUMI BUTIK</span></li>
+							<li>No Rekening <span>033928-0091-02-1</span></li>
+						</ul>
+						<h5>Bukti Pembayaran</h5>
+						<input type="file" class="form-control mb-4" name="gambar">
+						<button type="submit" class="primary-btn">Proceed to payment</button>
+					</div>
+					</form>
 				</div>
-			</div>
-		</div>
-		<?php echo form_close(); ?>
-		<div class="row">
-			<div class="col-lg-6">
+			<?php
+			}
+			?>
 
-			</div>
-			<div class="col-lg-4 offset-lg-2">
-				<div class="cart__total__procced">
-					<h6>Cart total</h6>
-					<ul>
-						<li>Subtotal <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
-						<li>Total <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
-					</ul>
-					<a href="<?= base_url('Pelanggan/cCheckout') ?>" class="primary-btn">Proceed to checkout</a>
-				</div>
-			</div>
 		</div>
+
 	</div>
 </section>
 <!-- Shop Cart Section End -->
