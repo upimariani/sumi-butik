@@ -55,20 +55,20 @@
 
 
 				<li class="sidebar-header">LAPORAN</li>
-				<li class="<?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cDashboard') {
+				<li class="<?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cTransaksi') {
 								echo 'active';
 							}  ?>">
-					<a href="profile.html">
+					<a href="<?= base_url('Admin/cTransaksi') ?>">
 						<i class="zmdi zmdi-assignment-check"></i> <span>Laporan Transaksi</span>
 					</a>
 				</li>
 				<li class="sidebar-header">ANALISIS</li>
 
-				<li class="<?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cDashboard') {
+				<li class="<?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cAnalisisPelanggan') {
 								echo 'active';
 							}  ?>">
-					<a href="profile.html">
-						<i class="zmdi zmdi-case-check"></i> <span>Analisis Retensi Produk</span>
+					<a href="<?= base_url('Admin/cAnalisisPelanggan') ?>">
+						<i class="zmdi zmdi-case-check"></i> <span>Analisis Retensi Pelanggan</span>
 					</a>
 				</li>
 				<li>

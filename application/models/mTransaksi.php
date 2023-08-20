@@ -24,6 +24,21 @@ class mTransaksi extends CI_Model
 		$this->db->where('id_po', $id);
 		$this->db->update('po', $data);
 	}
+	public function kritik_saran($id)
+	{
+		return $this->db->query("SELECT po.id_po, isi_kritik_saran, status_order FROM `po` LEFT JOIN kritik_saran ON po.id_po=kritik_saran.id_po WHERE po.id_po='" . $id . "'")->row();
+	}
+
+	//admin
+	public function transaksi_admin()
+	{
+		return $this->db->query("SELECT * FROM `po` JOIN pelanggan ON po.id_pelanggan=pelanggan.id_pelanggan")->result();
+	}
+	public function update_status($id, $data)
+	{
+		$this->db->where('id_po', $id);
+		$this->db->update('po', $data);
+	}
 }
 
 /* End of file mpo.php */

@@ -74,6 +74,13 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="cart__btn">
 					<a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Kembali</a>
+					<?php
+					if ($transaksi['po']->status_order == '3') {
+					?>
+						<a class="btn btn-success" href="<?= base_url('Pelanggan/cPesananSaya/pesanan_diterima/' .  $transaksi['po']->id_po) ?>">Pesanan Diterima</a>
+					<?php
+					}
+					?>
 				</div>
 			</div>
 			<?php
@@ -97,62 +104,77 @@
 			<?php
 			}
 			?>
-
+			<?php
+			if ($kritik_saran->isi_kritik_saran == null && $kritik_saran->status_order == '4') {
+			?>
+				<div class="col-lg-4 offset-lg-2">
+					<?php echo form_open_multipart('Pelanggan/cPesananSaya/kritik_saran/' . $transaksi['po']->id_po); ?>
+					<div class="cart__total__procced">
+						<h6>Kritik dan Saran</h6>
+						<textarea name="kritik_saran" class="form-control mb-4" required></textarea>
+						<button type="submit" class="btn btn-primary primary-btn">Kirim Kritik Saran</button>
+					</div>
+					</form>
+				</div>
+			<?php
+			}
+			?>
 		</div>
 
 	</div>
 </section>
 <!-- Shop Cart Section End -->
 
+
 <!-- Instagram Begin -->
 <div class="instagram">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-				<div class="instagram__item set-bg" data-setbg="img/instagram/insta-1.jpg">
+			<div class="col-lg-2 col-md-4 col-sm-4 col-md-6 col-sm-6 p-0">
+				<div class="instagram__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/instagram/insta-1.jpg">
 					<div class="instagram__text">
 						<i class="fa fa-instagram"></i>
-						<a href="#">@ ashion_shop</a>
+						<a href="#">@ sumibutik</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-				<div class="instagram__item set-bg" data-setbg="img/instagram/insta-2.jpg">
+			<div class="col-lg-2 col-md-4 col-sm-4 col-md-6 col-sm-6 p-0">
+				<div class="instagram__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/instagram/insta-2.jpg">
 					<div class="instagram__text">
 						<i class="fa fa-instagram"></i>
-						<a href="#">@ ashion_shop</a>
+						<a href="#">@ sumibutik</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-				<div class="instagram__item set-bg" data-setbg="img/instagram/insta-3.jpg">
+			<div class="col-lg-2 col-md-4 col-sm-4 col-md-6 col-sm-6 p-0">
+				<div class="instagram__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/instagram/insta-3.jpg">
 					<div class="instagram__text">
 						<i class="fa fa-instagram"></i>
-						<a href="#">@ ashion_shop</a>
+						<a href="#">@ sumibutik</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-				<div class="instagram__item set-bg" data-setbg="img/instagram/insta-4.jpg">
+			<div class="col-lg-2 col-md-4 col-sm-4 col-md-6 col-sm-6 p-0">
+				<div class="instagram__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/instagram/insta-4.jpg">
 					<div class="instagram__text">
 						<i class="fa fa-instagram"></i>
-						<a href="#">@ ashion_shop</a>
+						<a href="#">@ sumibutik</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-				<div class="instagram__item set-bg" data-setbg="img/instagram/insta-5.jpg">
+			<div class="col-lg-2 col-md-4 col-sm-4 col-md-6 col-sm-6 p-0">
+				<div class="instagram__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/instagram/insta-5.jpg">
 					<div class="instagram__text">
 						<i class="fa fa-instagram"></i>
-						<a href="#">@ ashion_shop</a>
+						<a href="#">@ sumibutik</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-				<div class="instagram__item set-bg" data-setbg="img/instagram/insta-6.jpg">
+			<div class="col-lg-2 col-md-4 col-sm-4 col-md-6 col-sm-6 p-0">
+				<div class="instagram__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/instagram/insta-6.jpg">
 					<div class="instagram__text">
 						<i class="fa fa-instagram"></i>
-						<a href="#">@ ashion_shop</a>
+						<a href="#">@ sumibutik</a>
 					</div>
 				</div>
 			</div>

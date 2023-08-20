@@ -39,7 +39,7 @@
 											}  ?>">
 									<a href="<?= base_url('Pelanggan/cChatting') ?>">Chatting</a>
 								</li>
-								<li>Selamat Datang, <strong>
+								<li> <strong>
 										<?= $this->session->userdata('nama') ?></strong>
 								</li>
 							<?php
