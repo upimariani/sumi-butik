@@ -11,6 +11,15 @@ class mHome extends CI_Model
 		$this->db->join('diskon', 'produk.id_produk = diskon.id_produk', 'left');
 		return $this->db->get()->result();
 	}
+	public function kritik_saran()
+	{
+		$this->db->select('*');
+		$this->db->from('kritik_saran');
+		$this->db->join('po', 'kritik_saran.id_po = po.id_po', 'left');
+		$this->db->join('pelanggan', 'pelanggan.id_pelanggan = po.id_pelanggan', 'left');
+
+		return $this->db->get()->result();
+	}
 }
 
 /* End of file mHome.php */

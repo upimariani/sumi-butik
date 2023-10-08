@@ -10,7 +10,7 @@
 						<h5 class="card-title">Informasi Pelanggan</h5>
 
 						<div class="table-responsive">
-							<table class="table">
+							<table id="myTable" class="table">
 								<thead>
 									<tr>
 										<th>Nama Pelanggan</th>
@@ -29,11 +29,11 @@
 											<td class="d-none d-md-table-cell"><?= $value->no_tlpon ?></td>
 											<td class="d-none d-md-table-cell"><?php if ($value->level_member == '0') {
 																				?>
-													<span class="badge badge-danger">Non Member</span>
+													<span class="badge badge-danger">Pelanggan</span>
 												<?php
 																				} else {
 												?>
-													<span class="badge badge-success">Member</span>
+													<span class="badge badge-success">Pelanggan Istimewa</span>
 												<?php
 																				} ?>
 											</td>

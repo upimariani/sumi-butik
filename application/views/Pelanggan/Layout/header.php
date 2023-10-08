@@ -10,12 +10,8 @@
 	<header class="header">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xl-3 col-lg-2">
-					<div class="header__logo">
-						<a href="./index.html"><img src="img/logo.png" alt=""></a>
-					</div>
-				</div>
-				<div class="col-xl-6 col-lg-7">
+
+				<div class="col-lg-10">
 					<nav class="header__menu">
 						<ul>
 							<li class="<?php if ($this->uri->segment(1) == 'Pelanggan' && $this->uri->segment(2) == 'cHome') {
@@ -40,7 +36,11 @@
 									<a href="<?= base_url('Pelanggan/cChatting') ?>">Chatting</a>
 								</li>
 								<li> <strong>
-										<?= $this->session->userdata('nama') ?></strong>
+										<?= $this->session->userdata('nama') ?></strong>, <small>Level member anda adalah <strong><?php if ($this->session->userdata('level') == '0') {
+																																		echo 'Pelanggan';
+																																	} else {
+																																		echo 'Pelanggan Istimewa';
+																																	}  ?></strong></small>
 								</li>
 							<?php
 							}
@@ -50,7 +50,7 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<div class="header__right">
 						<div class="header__right__auth">
 							<?php

@@ -15,7 +15,8 @@ class cHome extends CI_Controller
 	{
 		$data = array(
 			'produk' => $this->mHome->produk(),
-			'kategori' => $this->mKategori->select()
+			'kategori' => $this->mKategori->select(),
+			'kritik_saran' => $this->mHome->kritik_saran()
 		);
 		$this->load->view('Pelanggan/Layout/head');
 		$this->load->view('Pelanggan/Layout/header');

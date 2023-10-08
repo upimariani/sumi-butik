@@ -100,11 +100,30 @@
 								<li>Subtotal <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
 								<li>Total <span id="total_bayar"> </span></li>
 							</ul>
+
+
+							<?php
+							if ($this->session->userdata('level') == '1') {
+							?>
+								<hr>
+								<ul>
+									<li>Informasi! <span>Anda adalah sebagai level member <strong>Pelanggan Istimewa</strong></span> anda mendapatkan voucher belanja sebesar Rp. 100.000</li>
+								</ul>
+								<ul>
+									<li>Total bayar <span id="pelanggan_istimewa"></span></li>
+								</ul>
+							<?php
+							}
+							?>
+
 						</div>
 
 						<input type="hidden" name="estimasi">
 						<input type="hidden" name="ongkir">
+
 						<input type="hidden" name="total_bayar">
+						<input type="hidden" name="istimewa">
+
 						<input type="hidden" name="subtotal" value="<?= $this->cart->total() ?>">
 						<button type="submit" class="site-btn">Place oder</button>
 					</div>
@@ -334,6 +353,14 @@
 			var ongkir = $("option:selected", this).attr('ongkir');
 			var total_bayar = parseInt(ongkir) + parseInt(<?= $this->cart->total() ?>);
 
+			//pelanggan istimewa
+			var istimewa = parseInt(total_bayar) - 100000;
+
+			var reverse3 = istimewa.toString().split('').reverse().join(''),
+				ribuan_istimewa = reverse3.match(/\d{1,3}/g);
+			ribuan_istimewa = ribuan_istimewa.join(',').split('').reverse().join('');
+			$("#pelanggan_istimewa").html("Rp. " + ribuan_istimewa);
+
 			var reverse2 = total_bayar.toString().split('').reverse().join(''),
 				ribuan_total = reverse2.match(/\d{1,3}/g);
 			ribuan_total = ribuan_total.join(',').split('').reverse().join('');
@@ -344,6 +371,7 @@
 			$("input[name=estimasi]").val(estimasi);
 			$("input[name=ongkir]").val(dataongkir);
 			$("input[name=total_bayar]").val(total_bayar);
+			$("input[name=istimewa]").val(istimewa);
 		});
 	});
 </script>

@@ -12,10 +12,17 @@ class cCheckout extends CI_Controller
 	}
 	public function order()
 	{
+		if ($this->session->userdata('level') == '1') {
+			$total = $this->input->post('istimewa');
+		} else {
+			$total = $this->input->post('total_bayar');
+		}
+
+
 		$data = array(
-			'id_pelanggan' => '1',
+			'id_pelanggan' => $this->session->userdata('id_pelanggan'),
 			'tgl_po' => date('Y-m-d'),
-			'total_bayar' => $this->input->post('total_bayar'),
+			'total_bayar' => $total,
 			'status_order' => '0',
 			'bukti_pembayaran' => '0',
 			'alamat_detail' => $this->input->post('alamat'),

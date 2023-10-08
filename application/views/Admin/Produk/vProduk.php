@@ -25,11 +25,11 @@
 						}
 						?>
 						<div class="table-responsive">
-							<table class="table">
+							<table id="myTable" class="table">
 								<thead>
 									<tr>
 										<th>Gambar</th>
-										<th>Nama Produk</th>
+										<th width="50px" class="d-none d-md-table-cell">Nama Produk</th>
 										<th class="d-none d-md-table-cell">Harga Produk</th>
 										<th class="d-none d-md-table-cell">Deskripsi</th>
 										<th class="d-none d-md-table-cell">Stok</th>
@@ -41,10 +41,10 @@
 										<tr>
 											<td><img style="width: 100px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>"></td>
 											<td>
-												<h4><?= $value->nama_produk ?></h4>
+												<h6><?= $value->nama_produk ?></h6>
 												<p><?= $value->nama_kategori ?></p>
 											</td>
-											<td class="d-none d-md-table-cell">Rp. <?= number_format($value->harga, 0) ?></td>
+											<td class="d-none d-md-table-cell">Rp. <?= number_format($value->harga)  ?></td>
 											<td class="d-none d-md-table-cell"><?= $value->deskripsi ?></td>
 											<td class="d-none d-md-table-cell"><?= $value->stok ?></td>
 											<td><a href="<?= base_url('Admin/cProduk/delete/' . $value->id_produk) ?>" class="btn btn-danger">Hapus</a>

@@ -29,11 +29,13 @@ class cLogin extends CI_Controller
 			if ($data) {
 				$id_pelanggan = $data->id_pelanggan;
 				$nama = $data->nm_pel;
+				$level = $data->level_member;
 
 
 				$array = array(
 					'id_pelanggan' => $id_pelanggan,
-					'nama' => $nama
+					'nama' => $nama,
+					'level' => $level
 				);
 				$this->session->set_userdata($array);
 
@@ -76,6 +78,7 @@ class cLogin extends CI_Controller
 
 		$this->session->unset_userdata('id_pelanggan');
 		$this->session->unset_userdata('nama');
+		$this->session->unset_userdata('level');
 		$this->session->set_flashdata('success', 'Anda Berahasil Logout!');
 		redirect('Pelanggan/cLogin');
 	}
