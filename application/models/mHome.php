@@ -20,6 +20,11 @@ class mHome extends CI_Model
 
 		return $this->db->get()->result();
 	}
+
+	public function penilaian($id_produk)
+	{
+		return $this->db->query("SELECT isi_kritik_saran, tgl_po, produk.id_produk, nm_pel FROM `kritik_saran` JOIN po ON po.id_po=kritik_saran.id_po JOIN detail_po ON detail_po.id_po=po.id_po JOIN produk ON produk.id_produk=detail_po.id_produk JOIN pelanggan ON pelanggan.id_pelanggan=po.id_pelanggan WHERE produk.id_produk='" . $id_produk . "'")->result();
+	}
 }
 
 /* End of file mHome.php */

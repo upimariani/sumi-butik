@@ -20,6 +20,13 @@ class cAnalisisPelanggan extends CI_Controller
 		$this->load->view('Admin/Pelanggan/vAnalisisPelanggan', $data);
 		$this->load->view('Admin/Layout/footer');
 	}
+	public function view_analisis()
+	{
+		$this->load->view('Admin/Layout/head');
+		$this->load->view('Admin/Layout/sidebar');
+		$this->load->view('Admin/Pelanggan/vViewAnalisis');
+		$this->load->view('Admin/Layout/footer');
+	}
 }
 
 /* End of file cAnalisisPelanggan.php */

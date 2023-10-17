@@ -103,7 +103,8 @@
 
 
 							<?php
-							if ($this->session->userdata('level') == '1') {
+
+							if ($this->session->userdata('level') == '1' && $data_pelanggan->stat_reward == '1') {
 							?>
 								<hr>
 								<ul>

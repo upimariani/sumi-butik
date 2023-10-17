@@ -3,12 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-6 p-0">
-				<div class="categories__item categories__large__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-1.jpg">
-					<div class="categories__text">
-						<h1>Toko Sumi Butik Kuningan</h1>
-						<p>Kuningan, Kuningan Regency, West Java 45511, Indonesia</p>
-						<a href="#">Shop now</a>
-					</div>
+				<div class="categories__item categories__large__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/sumi.png">
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -17,8 +12,6 @@
 						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-2.jpg">
 							<div class="categories__text">
 								<h4>Pakaian Laki - Laki</h4>
-								<p>358 items</p>
-								<a href="#">Shop now</a>
 							</div>
 						</div>
 					</div>
@@ -26,8 +19,6 @@
 						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-3.jpg">
 							<div class="categories__text">
 								<h4>Pakaian Wanita</h4>
-								<p>273 items</p>
-								<a href="#">Shop now</a>
 							</div>
 						</div>
 					</div>
@@ -35,8 +26,6 @@
 						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-4.jpg">
 							<div class="categories__text">
 								<h4>Cosmetics</h4>
-								<p>159 items</p>
-								<a href="#">Shop now</a>
 							</div>
 						</div>
 					</div>
@@ -44,8 +33,6 @@
 						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-5.jpg">
 							<div class="categories__text">
 								<h4>Bayi</h4>
-								<p>792 items</p>
-								<a href="#">Shop now</a>
 							</div>
 						</div>
 					</div>
@@ -111,8 +98,8 @@
 
 							<ul class="product__hover">
 								<li><a href="<?= base_url('asset/foto-produk/' . $value->gambar) ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-
 								<li><a href="<?= base_url('Pelanggan/cCart/add_to_cart/' . $value->id_produk) ?>"><span class="icon_bag_alt"></span></a></li>
+								<li><a href="<?= base_url('Pelanggan/cHome/detail_produk/' . $value->id_produk) ?>"><span class="icon_info"></span></a></li>
 							</ul>
 						</div>
 						<div class="product__item__text">

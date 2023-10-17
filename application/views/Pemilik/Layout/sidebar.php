@@ -40,6 +40,15 @@
 						<i class="zmdi zmdi-book"></i> <span>Analisis Retensi Pelanggan</span>
 					</a>
 				</li>
+				<li class="sidebar-header">KOMUNIKASI</li>
+
+				<li class="<?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cKritikSaran') {
+								echo 'active';
+							}  ?>">
+					<a href="<?= base_url('Pemilik/cKritikSaran') ?>">
+						<i class="zmdi zmdi-info"></i> <span>Kritik dan Saran Pelanggan</span>
+					</a>
+				</li>
 				<li>
 					<a href="<?= base_url('cLogin/logout') ?>">
 						<i class="zmdi zmdi-assignment-return"></i> <span>Logout</span>

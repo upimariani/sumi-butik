@@ -8,6 +8,9 @@
 		<div class="row">
 			<div class="col-6 col-lg-6">
 				<div class="card">
+					<div class="card-header">
+						<h3>Chatting Pelanggan</h3>
+					</div>
 					<div class="card-body">
 						<?php
 						foreach ($chatting as $key => $value) {
@@ -48,7 +51,7 @@
 						}
 						?>
 						<h4>Balasan Chatting</h4>
-						<form action="<?= base_url('Admin/cDashboard/balas/' . $id) ?>" method="POST">
+						<form action="<?= base_url('Admin/cChatting/balas/' . $id) ?>" method="POST">
 							<textarea class="form-control" name="pesan" placeholder="Tuliskan pesan anda..."></textarea>
 							<button type="submit" class="btn btn-warning mt-3">Send</button>
 						</form>

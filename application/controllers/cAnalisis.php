@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class cAnalisisDumy extends CI_Controller
+class cAnalisis extends CI_Controller
 {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('mAnalisisDumy');
 		$this->load->model('mAnalisis');
 	}
 
@@ -15,7 +14,6 @@ class cAnalisisDumy extends CI_Controller
 	public function index()
 	{
 		$date = date('Y-m-d');
-		// $data_dumy = $this->mAnalisisDumy->data_dumy();
 		$data = $this->mAnalisis->variabel($date);
 
 		$recency = array();
@@ -319,6 +317,12 @@ class cAnalisisDumy extends CI_Controller
 			);
 			$this->db->where('id_pelanggan', $pelanggan[$k]);
 			$this->db->update('pelanggan', $data);
+		}
+
+		for ($k = 0; $k < sizeof($klaster2); $k++) {
+			echo $klaster2[$k] . '|' . $klaster1[$k] . '|' . $klaster3[$k] . '|' . $klaster4[$k] . 'Id Pelanggan' . $pelanggan[$k];
+			echo '<br>';
+
 
 			$insert = array(
 				'id_pelanggan' => $pelanggan[$k],

@@ -8,6 +8,7 @@
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title">Informasi Pelanggan</h5>
+						<a href="<?= base_url('Admin/cAnalisisPelanggan/view_analisis') ?>" class="btn btn-warning mb-3">View Analisis</a>
 
 						<div class="table-responsive">
 							<table id="myTable" class="table">

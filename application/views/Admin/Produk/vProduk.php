@@ -25,11 +25,11 @@
 						}
 						?>
 						<div class="table-responsive">
-							<table id="myTable" class="table">
+							<table id="myTable" class="table" style="width: 100%;">
 								<thead>
 									<tr>
 										<th>Gambar</th>
-										<th width="50px" class="d-none d-md-table-cell">Nama Produk</th>
+										<th style="width: 20%;" class="d-none d-md-table-cell">Nama Produk</th>
 										<th class="d-none d-md-table-cell">Harga Produk</th>
 										<th class="d-none d-md-table-cell">Deskripsi</th>
 										<th class="d-none d-md-table-cell">Stok</th>
@@ -40,7 +40,7 @@
 									<?php foreach ($produk as $key => $value) { ?>
 										<tr>
 											<td><img style="width: 100px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>"></td>
-											<td>
+											<td style="width: 20%;">
 												<h6><?= $value->nama_produk ?></h6>
 												<p><?= $value->nama_kategori ?></p>
 											</td>

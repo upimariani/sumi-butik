@@ -12,7 +12,8 @@ class cCheckout extends CI_Controller
 	}
 	public function order()
 	{
-		if ($this->session->userdata('level') == '1') {
+		$data_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
+		if ($this->session->userdata('level') == '1' && $data_pelanggan->stat_reward == '1') {
 			$total = $this->input->post('istimewa');
 		} else {
 			$total = $this->input->post('total_bayar');
@@ -33,6 +34,25 @@ class cCheckout extends CI_Controller
 			'expedisi' => $this->input->post('expedisi')
 		);
 		$this->db->insert('po', $data);
+
+		//update reward
+
+		$reward = array(
+			'stat_reward' => '0'
+		);
+		$this->db->where('id_pelanggan', $this->session->userdata('id_pelanggan'));
+		$this->db->update('pelanggan', $reward);
+
+
+		//update stok produk
+		foreach ($this->cart->contents() as $key => $item) {
+			$update_stok = $item['stok'] - $item['qty'];
+			$stok = array(
+				'stok' => $update_stok
+			);
+			$this->db->where('id_produk', $item['id']);
+			$this->db->update('produk', $stok);
+		}
 
 		$id_po = $this->db->query("SELECT MAX(id_po) as id FROM `po`")->row();
 		foreach ($this->cart->contents() as $key => $value) {

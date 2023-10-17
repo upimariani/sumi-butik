@@ -20,7 +20,7 @@
 							<?= form_error('password', '<small class="text-danger">', '</small>') ?>
 							<input type="text" name="password" placeholder="Password">
 							<div class="mb-3">
-								Apakah Anda Belum Memiliki Akun? <a href="<?= base_url('Pelanggan/cLogin/register') ?>" class="text-info">Register Disini</a>
+								Apakah Anda Sudah Memiliki Akun? <a href="<?= base_url('Pelanggan/cLogin') ?>" class="text-info">Login Disini</a>
 							</div>
 							<button type="submit" class="site-btn">REGISTER</button>
 						</form>

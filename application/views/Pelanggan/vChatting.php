@@ -64,15 +64,14 @@
 						?>
 								<div class="blog__comment__item">
 									<div class="blog__comment__item__pic">
-										<img src="<?= base_url('asset/ashion-master/') ?>img/blog/details/comment-1.jpg" alt="">
+										<img src="<?= base_url('asset/ashion-master/') ?>img/blog/details/comment-3.jpg" alt="">
 									</div>
 									<div class="blog__comment__item__text">
 										<h6><?= $value->nm_pel ?></h6>
 										<p><?= $value->pelanggan_send ?></p>
 										<ul>
 											<li><i class="fa fa-clock-o"></i> <?= $value->time ?></li>
-											<li><i class="fa fa-heart-o"></i> 12</li>
-											<li><i class="fa fa-share"></i> 1</li>
+
 										</ul>
 									</div>
 								</div>
@@ -81,15 +80,14 @@
 							?>
 								<div class="blog__comment__item blog__comment__item--reply">
 									<div class="blog__comment__item__pic">
-										<img src="<?= base_url('asset/ashion-master/') ?>img/blog/details/comment-2.jpg" alt="">
+										<img src="<?= base_url('asset/ashion-master/') ?>img/blog/details/comment-1.jpg" alt="">
 									</div>
 									<div class="blog__comment__item__text">
 										<h6>Admin</h6>
 										<p><?= $value->admin_send ?></p>
 										<ul>
 											<li><i class="fa fa-clock-o"></i> <?= $value->time ?></li>
-											<li><i class="fa fa-heart-o"></i> 12</li>
-											<li><i class="fa fa-share"></i> 1</li>
+
 										</ul>
 									</div>
 								</div>

@@ -9,6 +9,7 @@ class cHome extends CI_Controller
 		parent::__construct();
 		$this->load->model('mHome');
 		$this->load->model('mKategori');
+		$this->load->model('mCart');
 	}
 
 	public function index()
@@ -21,6 +22,17 @@ class cHome extends CI_Controller
 		$this->load->view('Pelanggan/Layout/head');
 		$this->load->view('Pelanggan/Layout/header');
 		$this->load->view('Pelanggan/vHome', $data);
+		$this->load->view('Pelanggan/Layout/footer');
+	}
+	public function detail_produk($id)
+	{
+		$data = array(
+			'produk' => $this->mCart->get_produk($id),
+			'penilaian' => $this->mHome->penilaian($id)
+		);
+		$this->load->view('Pelanggan/Layout/head');
+		$this->load->view('Pelanggan/Layout/header');
+		$this->load->view('Pelanggan/vDetailProduk', $data);
 		$this->load->view('Pelanggan/Layout/footer');
 	}
 }

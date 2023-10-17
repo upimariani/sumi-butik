@@ -7,9 +7,8 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">Informasi Kategori</h5>
+						<h5 class="card-title">Informasi Kritik dan Saran Pelanggan</h5>
 
-						<a href="<?= base_url('Admin/cKategori/create') ?>" class="btn btn-success mb-3">+ Data Kategori</a>
 						<?php
 						if ($this->session->userdata('success') != '') {
 						?>
@@ -25,39 +24,42 @@
 						<?php
 						}
 						?>
-
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">Nama Kategori</th>
-										<th scope="col">Action</th>
+										<th scope="col">Nama Pelanggan</th>
+										<th scope="col">Tanggal Transaksi</th>
+										<th scope="col">Isi Kritik Saran</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 									$no = 1;
-									foreach ($kategori as $key => $value) {
+									foreach ($kritiksaran as $key => $value) {
 									?>
 										<tr>
 											<th scope="row"><?= $no++ ?></th>
-											<td><?= $value->nama_kategori ?></td>
-											<td><a href="<?= base_url('Admin/cKategori/delete/' . $value->id_kategori) ?>" class="btn btn-danger">Hapus</a>
-												<a href="<?= base_url('Admin/cKategori/update/' . $value->id_kategori) ?>" class="btn btn-warning">Edit</a>
-											</td>
+											<td><?= $value->nm_pel ?></td>
+											<td><?= $value->tgl_po ?></td>
+											<td><?= $value->isi_kritik_saran ?></td>
+
 										</tr>
 									<?php
-									}
-									?>
+									} ?>
+
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 		<!--End Row-->
+
+
 		<!--start overlay-->
 		<div class="overlay toggle-menu"></div>
 		<!--end overlay-->

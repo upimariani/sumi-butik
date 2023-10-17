@@ -76,6 +76,9 @@
 		$('#myTable').DataTable({
 			select: true
 		});
+		$('.myTable').DataTable({
+			select: true
+		});
 	</script>
 	<script>
 		<?php
