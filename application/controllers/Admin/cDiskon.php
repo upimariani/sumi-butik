@@ -9,6 +9,7 @@ class cDiskon extends CI_Controller
 		parent::__construct();
 		$this->load->model('mDiskon');
 		$this->load->model('mProduk');
+		$this->load->model('mChatting');
 	}
 
 	public function index()

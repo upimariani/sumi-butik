@@ -1,174 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>LOGIN</title>
-	<!-- loader-->
-	<link href="assets/css/pace.min.css" rel="stylesheet" />
-	<script src="assets/js/pace.min.js"></script>
-	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-	<!-- Bootstrap core CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-	<!-- animate CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/animate.css" rel="stylesheet" type="text/css" />
-	<!-- Icons CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/icons.css" rel="stylesheet" type="text/css" />
-	<!-- Custom Style-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/app-style.css" rel="stylesheet" />
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Login | TOKO SUMI BUTIK</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<link rel="icon" href="<?= base_url('asset/themekit-master/') ?>favicon.ico" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/ionicons/dist/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/icon-kit/dist/css/iconkit.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>dist/css/theme.min.css">
+	<script src="<?= base_url('asset/themekit-master/') ?>src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body class="bg-theme bg-theme2">
+<body>
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-	<!-- start loader -->
-	<div id="pageloader-overlay" class="visible incoming">
-		<div class="loader-wrapper-outer">
-			<div class="loader-wrapper-inner">
-				<div class="loader"></div>
-			</div>
-		</div>
-	</div>
-	<!-- end loader -->
-
-	<!-- Start wrapper-->
-	<div id="wrapper">
-
-		<div class="loader-wrapper">
-			<div class="lds-ring">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-		</div>
-		<div class="card card-authentication1 mx-auto my-5">
-			<div class="card-body">
-				<div class="card-content p-2">
-					<div class="text-center">
-						<!-- <img src="assets/images/logo-icon.png" alt="logo icon"> -->
+	<div class="auth-wrapper">
+		<div class="container-fluid h-100">
+			<div class="row flex-row h-100 bg-white">
+				<div class="col-xl-8 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
+					<div class="lavalite-bg" style="background-image: url('<?= base_url('asset/themekit-master/') ?>img/auth/login-bg.jpg')">
+						<div class="lavalite-overlay"></div>
 					</div>
-					<div class="card-title text-uppercase text-center py-3">Sign In</div>
-					<?php
-					if ($this->session->userdata('success')) {
-					?>
-						<div class="alert alert-success alert-dismissible" role="alert">
-
-							<div class="alert-icon">
-								<i class="zmdi zmdi-notifications-none"></i>
-							</div>
-							<div class="alert-message">
-								<strong>Sukses!</strong> <?= $this->session->userdata('success') ?>
-							</div>
+				</div>
+				<div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
+					<div class="authentication-form mx-auto">
+						<div class="logo-centered">
+							<a href="<?= base_url('asset/themekit-master/') ?>index.html"><img src="<?= base_url('asset/themekit-master/') ?>src/img/brand.svg" alt=""></a>
 						</div>
-					<?php
-					}
-					?>
-					<?php
-					if ($this->session->userdata('error')) {
-					?>
-						<div class="alert alert-danger alert-dismissible" role="alert">
+						<h3>SUMI BUTIK</h3>
+						<p>Happy to see you again!</p>
+						<?php
+						if ($this->session->userdata('success')) {
+						?>
+							<div class="alert alert-success alert-dismissible" role="alert">
 
-							<div class="alert-icon">
-								<i class="zmdi zmdi-notifications-none"></i>
+								<div class="alert-icon">
+									<i class="zmdi zmdi-notifications-none"></i>
+								</div>
+								<div class="alert-message">
+									<strong>Sukses!</strong> <?= $this->session->userdata('success') ?>
+								</div>
 							</div>
-							<div class="alert-message">
-								<strong>Gagal!</strong> <?= $this->session->userdata('error') ?>
+						<?php
+						}
+						?>
+						<?php
+						if ($this->session->userdata('error')) {
+						?>
+							<div class="alert alert-danger alert-dismissible" role="alert">
+
+								<div class="alert-icon">
+									<i class="zmdi zmdi-notifications-none"></i>
+								</div>
+								<div class="alert-message">
+									<strong>Gagal!</strong> <?= $this->session->userdata('error') ?>
+								</div>
 							</div>
-						</div>
-					<?php
-					}
-					?>
-					<form action="<?= base_url('cLogin') ?>" method="POST">
-						<div class="form-group">
-							<label for="exampleInputUsername" class="sr-only">Username</label>
-							<div class="position-relative has-icon-right">
-								<?= form_error('username', '<small class="text-danger">', '</small>') ?>
+						<?php
+						}
+						?>
+						<form action="<?= base_url('cLogin') ?>" method="POST">
+							<?= form_error('username', '<small class="text-danger">', '</small>') ?>
+							<div class="form-group">
+
 								<input type="text" id="exampleInputUsername" name="username" class="form-control input-shadow" placeholder="Enter Username">
-								<div class="form-control-position">
-									<i class="icon-user"></i>
-								</div>
+								<i class="ik ik-user"></i>
 							</div>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword" class="sr-only">Password</label>
-							<div class="position-relative has-icon-right">
-								<?= form_error('password', '<small class="text-danger">', '</small>') ?>
-								<input type="password" id="exampleInputPassword" name="password" class="form-control input-shadow" placeholder="Enter Password">
-								<div class="form-control-position">
-									<i class="icon-lock"></i>
-								</div>
-							</div>
-						</div>
+							<?= form_error('password', '<small class="text-danger">', '</small>') ?>
+							<div class="form-group">
 
-						<button type="submit" class="btn btn-light btn-block">Sign In</button>
-					</form>
+								<input type="password" id="exampleInputPassword" name="password" class="form-control input-shadow" placeholder="Enter Password">
+								<i class="ik ik-lock"></i>
+							</div>
+
+							<div class="sign-btn text-center">
+								<button type="submit" class="btn btn-theme">Sign In</button>
+							</div>
+						</form>
+
+					</div>
 				</div>
 			</div>
-
 		</div>
-
-		<!--Start Back To Top Button-->
-		<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-		<!--End Back To Top Button-->
-
-		<!--start color switcher-->
-		<div class="right-sidebar">
-			<div class="switcher-icon">
-				<i class="zmdi zmdi-settings zmdi-hc-spin"></i>
-			</div>
-			<div class="right-sidebar-content">
-
-				<p class="mb-0">Gaussion Texture</p>
-				<hr>
-
-				<ul class="switcher">
-					<li id="theme1"></li>
-					<li id="theme2"></li>
-					<li id="theme3"></li>
-					<li id="theme4"></li>
-					<li id="theme5"></li>
-					<li id="theme6"></li>
-				</ul>
-
-				<p class="mb-0">Gradient Background</p>
-				<hr>
-
-				<ul class="switcher">
-					<li id="theme7"></li>
-					<li id="theme8"></li>
-					<li id="theme9"></li>
-					<li id="theme10"></li>
-					<li id="theme11"></li>
-					<li id="theme12"></li>
-					<li id="theme13"></li>
-					<li id="theme14"></li>
-					<li id="theme15"></li>
-				</ul>
-
-			</div>
-		</div>
-		<!--end color switcher-->
-
 	</div>
-	<!--wrapper-->
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="<?= base_url('asset/dashtreme-master/') ?>assets/js/jquery.min.js"></script>
-	<script src="<?= base_url('asset/dashtreme-master/') ?>assets/js/popper.min.js"></script>
-	<script src="<?= base_url('asset/dashtreme-master/') ?>assets/js/bootstrap.min.js"></script>
-
-	<!-- sidebar-menu js -->
-	<script src="<?= base_url('asset/dashtreme-master/') ?>assets/js/sidebar-menu.js"></script>
-
-	<!-- Custom scripts -->
-	<script src="<?= base_url('asset/dashtreme-master/') ?>assets/js/app-script.js"></script>
-
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		window.jQuery || document.write('<script src="<?= base_url('asset/themekit-master/') ?>src/js/vendor/jquery-3.3.1.min.js"><\/script>')
+	</script>
+	<script src="<?= base_url('asset/themekit-master/') ?>node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="<?= base_url('asset/themekit-master/') ?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="<?= base_url('asset/themekit-master/') ?>node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+	<script src="<?= base_url('asset/themekit-master/') ?>node_modules/screenfull/dist/screenfull.js"></script>
+	<script src="<?= base_url('asset/themekit-master/') ?>dist/js/theme.js"></script>
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		(function(b, o, i, l, e, r) {
+			b.GoogleAnalyticsObject = l;
+			b[l] || (b[l] =
+				function() {
+					(b[l].q = b[l].q || []).push(arguments)
+				});
+			b[l].l = +new Date;
+			e = o.createElement(i);
+			r = o.getElementsByTagName(i)[0];
+			e.src = 'https://www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e, r)
+		}(window, document, 'script', 'ga'));
+		ga('create', 'UA-XXXXX-X', 'auto');
+		ga('send', 'pageview');
+	</script>
 </body>
 
 </html>

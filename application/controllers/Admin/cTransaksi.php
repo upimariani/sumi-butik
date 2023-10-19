@@ -8,6 +8,7 @@ class cTransaksi extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('mTransaksi');
+		$this->load->model('mChatting');
 	}
 
 	public function index()

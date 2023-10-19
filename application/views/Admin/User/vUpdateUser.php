@@ -1,14 +1,40 @@
-<div class="clearfix"></div>
-
-<div class="content-wrapper">
+<div class="main-content">
 	<div class="container-fluid">
+		<div class="page-header">
+			<div class="row align-items-end">
+				<div class="col-lg-8">
+					<div class="page-header-title">
+						<i class="ik ik-user-plus bg-blue"></i>
+						<div class="d-inline">
+							<h5>Data User</h5>
+							<span>Akun login user</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<nav class="breadcrumb-container" aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="../index.html"><i class="ik ik-home"></i></a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#">Tables</a>
+							</li>
+							<li class="breadcrumb-item active" aria-current="page">User</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
 
-		<div class="row mt-3">
-			<div class="col-lg-6">
+		<div class="row">
+			<div class="col-md-7">
 				<div class="card">
+					<div class="card-header">
+						<h3>Update Data User</h3>
+
+					</div>
 					<div class="card-body">
-						<div class="card-title">Update Data User</div>
-						<hr>
 						<form action="<?= base_url('Admin/cUser/update/' . $user->id_user) ?>" method="POST">
 							<div class="form-group">
 								<label for="input-1">Nama User</label>
@@ -50,19 +76,14 @@
 								<?= form_error('level', '<small class="text-danger">', '</small>') ?>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Save</button>
+								<button type="submit" class="btn btn-success px-5"><i class="ik ik-save"></i> Update</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="overlay toggle-menu"></div>
-	</div>
-	<!-- End container-fluid-->
 
+
+	</div>
 </div>
-<!--End content-wrapper-->
-<!--Start Back To Top Button-->
-<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-<!--End Back To Top Button-->

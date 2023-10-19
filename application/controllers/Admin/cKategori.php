@@ -8,6 +8,7 @@ class cKategori extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('mKategori');
+		$this->load->model('mChatting');
 	}
 
 	public function index()

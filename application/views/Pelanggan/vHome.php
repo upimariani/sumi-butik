@@ -9,30 +9,30 @@
 			<div class="col-lg-6">
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 p-0">
-						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-2.jpg">
+						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/12.jpg">
 							<div class="categories__text">
-								<h4>Pakaian Laki - Laki</h4>
+								<h4 class="text-light">Pakaian Laki - Laki</h4>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 p-0">
-						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-3.jpg">
+						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/11.jpg">
 							<div class="categories__text">
 								<h4>Pakaian Wanita</h4>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 p-0">
-						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-4.jpg">
+						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/14.jpg">
 							<div class="categories__text">
-								<h4>Cosmetics</h4>
+								<h4 class="text-light">Pakaian Muslim</h4>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 p-0">
-						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/category-5.jpg">
+						<div class="categories__item set-bg" data-setbg="<?= base_url('asset/ashion-master/') ?>img/categories/13.jpg">
 							<div class="categories__text">
-								<h4>Bayi</h4>
+								<h4 class="text-light">Bayi</h4>
 							</div>
 						</div>
 					</div>
@@ -104,13 +104,7 @@
 						</div>
 						<div class="product__item__text">
 							<h6><a href="#"><?= $value->nama_produk ?></a></h6>
-							<div class="rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
+
 							<div class="product__price">Rp. <?= number_format($value->harga - ($value->diskon / 100 * $value->harga), 0)  ?>
 								<?php if ($value->diskon != NULL) {
 								?>

@@ -35,7 +35,7 @@ class cChatting extends CI_Controller
 			'id_pelanggan' => $id,
 			'id_user' => '1',
 			'admin_send' => $this->input->post('pesan'),
-			'pelanggan_send' => '0'
+
 		);
 		$this->db->insert('chatting', $data);
 		redirect('Admin/cChatting/view_chatting/' . $id);

@@ -1,31 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>Admin - Toko Sumi Butik</title>
-	<!-- loader-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/pace.min.css" rel="stylesheet" />
-	<script src="<?= base_url('asset/dashtreme-master/') ?>assets/js/pace.min.js"></script>
-	<!--favicon-->
-	<link rel="icon" href="<?= base_url('asset/dashtreme-master/') ?>assets/images/favicon.ico" type="image/x-icon">
-	<!-- Vector CSS -->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
-	<!-- simplebar CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-	<!-- Bootstrap core CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-	<!-- animate CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/animate.css" rel="stylesheet" type="text/css" />
-	<!-- Icons CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/icons.css" rel="stylesheet" type="text/css" />
-	<!-- Sidebar CSS-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/sidebar-menu.css" rel="stylesheet" />
-	<!-- Custom Style-->
-	<link href="<?= base_url('asset/dashtreme-master/') ?>assets/css/app-style.css" rel="stylesheet" />
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Admin | TOKO SUMI BUTIK</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/icon-kit/dist/css/iconkit.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/ionicons/dist/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/jvectormap/jquery-jvectormap.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/weather-icons/css/weather-icons.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/c3/c3.min.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/owl.carousel/dist/assets/owl.carousel.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>node_modules/owl.carousel/dist/assets/owl.theme.default.css">
+	<link rel="stylesheet" href="<?= base_url('asset/themekit-master/') ?>dist/css/theme.min.css">
+	<script src="<?= base_url('asset/themekit-master/') ?>src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>

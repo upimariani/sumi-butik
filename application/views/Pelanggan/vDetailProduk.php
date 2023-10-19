@@ -38,11 +38,11 @@
 				<div class="product__details__text">
 					<h3><?= $produk->nama_produk ?> </h3>
 					<div class="rating">
+						<!-- <i class="fa fa-star"></i>
 						<i class="fa fa-star"></i>
 						<i class="fa fa-star"></i>
 						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i> -->
 						<span>( Stok: <?= $produk->stok ?> )</span>
 					</div>
 					<div class="product__details__price">Rp. <?= number_format($produk->harga - ($produk->diskon / 100 * $produk->harga)) ?> <?php if ($produk->diskon != null) {

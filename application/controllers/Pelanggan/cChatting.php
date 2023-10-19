@@ -28,7 +28,7 @@ class cChatting extends CI_Controller
 				'id_pelanggan' => $this->session->userdata('id_pelanggan'),
 				'id_user' => '1',
 				'pelanggan_send' => $this->input->post('pesan'),
-				'admin_send' => '0'
+
 			);
 			$this->mChatting->send_pelanggan($data);
 			$this->session->set_flashdata('success', 'Pesan Anda Berhasil Dikirim!');

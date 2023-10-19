@@ -7,6 +7,7 @@ class cDashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('mChatting');
+		$this->load->model('mChatting');
 	}
 	public function index()
 	{
@@ -18,7 +19,6 @@ class cDashboard extends CI_Controller
 		$this->load->view('Admin/vDashboard', $data);
 		$this->load->view('Admin/Layout/footer');
 	}
-	
 }
 
 /* End of file cDashboard.php */

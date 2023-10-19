@@ -7,6 +7,7 @@ class cKritikSaran extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('mKritikSaran');
+		$this->load->model('mChatting');
 	}
 	public function index()
 	{
