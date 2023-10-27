@@ -1,12 +1,38 @@
-<div class="clearfix"></div>
-
-<div class="content-wrapper">
+<div class="main-content">
 	<div class="container-fluid">
+		<div class="page-header">
+			<div class="row align-items-end">
+				<div class="col-lg-8">
+					<div class="page-header-title">
+						<i class="ik ik-shopping-cart bg-danger"></i>
+						<div class="d-inline">
+							<h5>Transaksi</h5>
+							<span>Cetak Laporan Transaksi</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<nav class="breadcrumb-container" aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="../index.html"><i class="ik ik-home"></i></a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="#">Tables</a>
+							</li>
+							<li class="breadcrumb-item active" aria-current="page">Transaksi</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						Cetak Laporan Transaksi
+						<h3>Periode Transaksi</h3>
+
 					</div>
 					<div class="card-body">
 						<form action="<?= base_url('Pemilik/cTransaksi/cetak') ?>" method="POST">
@@ -44,62 +70,52 @@
 							</div>
 
 
-							<button type="submit" class="btn btn-success">Cetak Laporan</button>
+							<button type="submit" class="btn btn-success"><i class="ik ik-eye"></i> Cetak Laporan</button>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row mt-3">
-			<div class="col-lg-12">
-
+		<div class="row">
+			<div class="col-md-12">
 				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Informasi Transaksi</h5>
-						<div class="table-responsive">
-							<table id="myTable" class="table">
-								<thead>
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">Nama Pelanggan</th>
-										<th scope="col">Tanggal Transaksi</th>
-										<th scope="col">Total Bayar</th>
-										<th scope="col">Alamat Pengiriman</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$no = 1;
-									foreach ($transaksi as $key => $value) {
-									?>
-										<tr>
-											<th scope="row"><?= $no++ ?></th>
-											<td><?= $value->nm_pel ?></td>
-											<td><?= $value->tgl_po ?></td>
-											<td>Rp. <?= number_format($value->total_bayar)  ?></td>
-											<td><?= $value->alamat_detail ?> Kota. <?= $value->kota ?> Prov. <?= $value->prov ?></td>
+					<div class="card-header">
+						<h3>Informasi Transaksi Pelanggan</h3>
 
-										</tr>
-									<?php
-									}
-									?>
-								</tbody>
-							</table>
-						</div>
+					</div>
+					<div class="card-body">
+						<table id="data_table" class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Nama Pelanggan</th>
+									<th scope="col">Tanggal Transaksi</th>
+									<th scope="col">Total Bayar</th>
+									<th scope="col">Alamat Pengiriman</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$no = 1;
+								foreach ($transaksi as $key => $value) {
+								?>
+									<tr>
+										<th scope="row"><?= $no++ ?></th>
+										<td><?= $value->nm_pel ?></td>
+										<td><?= $value->tgl_po ?></td>
+										<td>Rp. <?= number_format($value->total_bayar)  ?></td>
+										<td><?= $value->alamat_detail ?> Kota. <?= $value->kota ?> Prov. <?= $value->prov ?></td>
+
+									</tr>
+								<?php
+								}
+								?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--End Row-->
-		<!--start overlay-->
-		<div class="overlay toggle-menu"></div>
-		<!--end overlay-->
 
 	</div>
-	<!-- End container-fluid-->
-
 </div>
-<!--End content-wrapper-->
-<!--Start Back To Top Button-->
-<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-<!--End Back To Top Button-->

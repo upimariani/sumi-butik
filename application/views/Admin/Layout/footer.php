@@ -266,9 +266,9 @@
 	$data_level = $this->db->query("SELECT COUNT(level_member) as level, level_member FROM `pelanggan` GROUP BY level_member")->result();
 	foreach ($data_level as $key => $value) {
 		if ($value->level_member == '0') {
-			$level[] = 'Non Member';
+			$level[] = 'Pelanggan';
 		} else {
-			$level[] = 'Member';
+			$level[] = 'Pelanggan Istimewa';
 		}
 		$jml[] = $value->level;
 	}

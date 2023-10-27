@@ -146,6 +146,7 @@
 
 
 								$data_min = min($centroid1[$d], $centroid2[$d]);
+								$min[] = min($centroid1[$d], $centroid2[$d]);
 								if ($data_min == $centroid1[$d]) {
 									$klaster1[] = '1';
 									// echo '<td>Klaster 1</td>';
@@ -363,46 +364,42 @@
 												<tr>
 													<td>Iterasi Pertama</td>
 													<td>Centroid 1 <br> Centroid 2</td>
-													<td><?= $c1_l ?> <br> <?= $c2_l ?><br>
-														Nilai Min : <?= $min_l ?><br>
-														Nilai Max : <?= $max_l ?>
+													<td><?= round($c1_l, 3) ?> <br> <?= round($c2_l, 3) ?><br>
+
 													</td>
-													<td><?= $c1_r ?> <br> <?= $c2_r ?><br>
-														Nilai Min : <?= $min_r ?><br>
-														Nilai Max : <?= $max_r ?>
+													<td><?= round($c1_r, 3) ?> <br> <?= round($c2_r, 3) ?><br>
+
 													</td>
-													<td><?= $c1_f ?> <br> <?= $c2_f ?><br>
-														Nilai Min : <?= $min_f ?><br>
-														Nilai Max : <?= $max_f ?>
+													<td><?= round($c1_f, 3) ?> <br> <?= round($c2_f, 3) ?><br>
+
 													</td>
-													<td><?= $c1_m ?> <br> <?= $c2_m ?><br>
-														Nilai Min : <?= $min_m ?><br>
-														Nilai Max : <?= $max_m ?>
+													<td><?= round($c1_m, 3) ?> <br> <?= round($c2_m, 3) ?><br>
+
 													</td>
 												</tr>
 												<tr>
 													<td>Iterasi Kedua</td>
 													<td>Centroid 1 <br> Centroid 2</td>
-													<td><?= $k_c1_l ?> <br> <?= $k_c2_l ?></td>
-													<td><?= $k_c1_r ?> <br> <?= $k_c2_r ?></td>
-													<td><?= $k_c1_f ?> <br> <?= $k_c2_f ?></td>
-													<td><?= $k_c1_m ?> <br> <?= $k_c2_m ?></td>
+													<td><?= round($k_c1_l, 3) ?> <br> <?= round($k_c2_l, 3) ?></td>
+													<td><?= round($k_c1_r, 3) ?> <br> <?= round($k_c2_r, 3) ?></td>
+													<td><?= round($k_c1_f, 3) ?> <br> <?= round($k_c2_f, 3) ?></td>
+													<td><?= round($k_c1_m, 3) ?> <br> <?= round($k_c2_m, 3) ?></td>
 												</tr>
 												<tr>
 													<td>Iterasi Ketiga</td>
 													<td>Centroid 1 <br> Centroid 2</td>
-													<td><?= $k_c12_l ?> <br> <?= $k_c22_l ?></td>
-													<td><?= $k_c12_r ?> <br> <?= $k_c22_r ?></td>
-													<td><?= $k_c12_f ?> <br> <?= $k_c22_f ?></td>
-													<td><?= $k_c12_m ?> <br> <?= $k_c22_m ?></td>
+													<td><?= round($k_c12_l, 3) ?> <br> <?= round($k_c22_l, 3) ?></td>
+													<td><?= round($k_c12_r, 3) ?> <br> <?= round($k_c22_r, 3) ?></td>
+													<td><?= round($k_c12_f, 3) ?> <br> <?= round($k_c22_f, 3) ?></td>
+													<td><?= round($k_c12_m, 3) ?> <br> <?= round($k_c22_m, 3) ?></td>
 												</tr>
 												<tr>
 													<td>Iterasi Keempat</td>
 													<td>Centroid 1 <br> Centroid 2</td>
-													<td><?= $k_c13_l ?> <br> <?= $k_c23_l ?></td>
-													<td><?= $k_c13_r ?> <br> <?= $k_c23_r ?></td>
-													<td><?= $k_c13_f ?> <br> <?= $k_c23_f ?></td>
-													<td><?= $k_c13_m ?> <br> <?= $k_c23_m ?></td>
+													<td><?= round($k_c13_l, 3) ?> <br> <?= round($k_c23_l, 3) ?></td>
+													<td><?= round($k_c13_r, 3) ?> <br> <?= round($k_c23_r, 3) ?></td>
+													<td><?= round($k_c13_f, 3) ?> <br> <?= round($k_c23_f, 3) ?></td>
+													<td><?= round($k_c13_m, 3) ?> <br> <?= round($k_c23_m, 3) ?></td>
 												</tr>
 											</tbody>
 										</table>
@@ -417,11 +414,12 @@
 										<thead>
 											<tr>
 												<th>Nama Pelanggan</th>
-												<th>Variabel Length</th>
-												<th class="d-none d-md-table-cell">Variabel Recency</th>
-												<th class="d-none d-md-table-cell">Variabel Frequency</th>
-												<th class="d-none d-md-table-cell">Variabel Monetary</th>
+												<th>Length</th>
+												<th class="d-none d-md-table-cell">Recency</th>
+												<th class="d-none d-md-table-cell">Frequency</th>
+												<th class="d-none d-md-table-cell">Monetary</th>
 												<th class="d-none d-md-table-cell">Centroid Pertama</th>
+												<th class="d-none d-md-table-cell">Jarak Minimum</th>
 												<th class="d-none d-md-table-cell">Clustering Terakhir</th>
 												<th class="d-none d-md-table-cell">Total Iterasi</th>
 											</tr>
@@ -450,19 +448,20 @@
 												<tr>
 													<td><?= $nama[$k] ?></td>
 													<td><?= $length[$k] ?> <br> Norm. <?= $norm_l[$k] ?>
-														<hr>
+
 													</td>
 													<td><?= $recency[$k] ?> <br> Norm. <?= $norm_r[$k] ?>
-														<hr>
+
 													</td>
 													<td><?= $frequency[$k] ?> <br> Norm. <?= $norm_f[$k] ?>
-														<hr>
+
 													</td>
 													<td>Rp. <?= number_format($monetary[$k])  ?> <br> Norm. <?= $norm_m[$k] ?>
-														<hr>
+
 													</td>
 													<td>Centroid 1 : <?= round($centroid1[$k], 3) ?> <br>
 														Centroid 2 : <?= round($centroid2[$k], 3) ?></td>
+													<td><?= round($min[$k], 3) ?></td>
 													<td><?php if ($klaster[$k] == '0') {
 															echo 'Pelanggan';
 														} else {

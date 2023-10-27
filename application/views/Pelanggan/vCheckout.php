@@ -108,7 +108,7 @@
 							?>
 								<hr>
 								<ul>
-									<li>Informasi! <span>Anda adalah sebagai level member <strong>Pelanggan Istimewa</strong></span> anda mendapatkan voucher belanja sebesar Rp. 100.000</li>
+									<li>Informasi! <span>Anda adalah sebagai level member <strong>Pelanggan Istimewa</strong></span> anda mendapatkan voucher belanja sebesar Rp. 50.000</li>
 								</ul>
 								<ul>
 									<li>Total bayar <span id="pelanggan_istimewa"></span></li>
@@ -355,7 +355,7 @@
 			var total_bayar = parseInt(ongkir) + parseInt(<?= $this->cart->total() ?>);
 
 			//pelanggan istimewa
-			var istimewa = parseInt(total_bayar) - 100000;
+			var istimewa = parseInt(total_bayar) - 50000;
 
 			var reverse3 = istimewa.toString().split('').reverse().join(''),
 				ribuan_istimewa = reverse3.match(/\d{1,3}/g);

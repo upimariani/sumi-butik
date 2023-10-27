@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Okt 2023 pada 06.45
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Generation Time: Oct 24, 2023 at 03:12 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `analisis`
+-- Table structure for table `analisis`
 --
 
 CREATE TABLE `analisis` (
@@ -37,7 +37,7 @@ CREATE TABLE `analisis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `analisis`
+-- Dumping data for table `analisis`
 --
 
 INSERT INTO `analisis` (`id_analisis`, `id_pelanggan`, `periode`, `tahun`, `cluster`) VALUES
@@ -1073,35 +1073,38 @@ INSERT INTO `analisis` (`id_analisis`, `id_pelanggan`, `periode`, `tahun`, `clus
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chatting`
+-- Table structure for table `chatting`
 --
 
 CREATE TABLE `chatting` (
   `id_chatting` int(11) NOT NULL,
   `id_pelanggan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `pelanggan_send` text NOT NULL,
-  `admin_send` text NOT NULL,
+  `pelanggan_send` text DEFAULT NULL,
+  `admin_send` text DEFAULT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `chatting`
+-- Dumping data for table `chatting`
 --
 
 INSERT INTO `chatting` (`id_chatting`, `id_pelanggan`, `id_user`, `pelanggan_send`, `admin_send`, `time`) VALUES
-(1, 1, 0, 'hai', '0', '2023-08-20 09:40:37'),
-(2, 2, 0, 'hai admin', '0', '2023-10-06 15:35:51'),
-(3, 1, 1, '0', 'haloo pelanggan', '2023-10-10 01:13:53'),
-(4, 1, 1, '0', 'hai anah', '2023-10-10 01:13:55'),
-(5, 2, 1, '0', 'ada yang bisa d bantu?', '2023-10-10 01:14:04'),
-(6, 1, 1, '0', 'ada yng bisa dibantu?', '2023-10-10 01:14:09'),
-(7, 1, 1, '0', 'ada yng bisa dibantu?', '2023-10-10 01:14:11');
+(1, 1, 1, 'hai', NULL, '2023-10-19 01:18:08'),
+(2, 2, 1, 'hai admin', NULL, '2023-10-19 01:18:11'),
+(3, 1, 1, NULL, 'haloo pelanggan', '2023-10-19 00:42:55'),
+(4, 1, 1, NULL, 'hai anah', '2023-10-19 00:42:58'),
+(5, 2, 1, NULL, 'ada yang bisa d bantu?', '2023-10-19 00:43:00'),
+(6, 1, 1, NULL, 'ada yng bisa dibantu?', '2023-10-19 00:43:02'),
+(7, 1, 1, NULL, 'ada yng bisa dibantu?', '2023-10-19 00:43:05'),
+(8, 1, 1, NULL, 'haloo', '2023-10-19 00:44:30'),
+(9, 1, 1, NULL, 'haii', '2023-10-19 03:44:38'),
+(10, 1, 1, NULL, 'silahkan', '2023-10-19 01:13:16');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_po`
+-- Table structure for table `detail_po`
 --
 
 CREATE TABLE `detail_po` (
@@ -1112,7 +1115,7 @@ CREATE TABLE `detail_po` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_po`
+-- Dumping data for table `detail_po`
 --
 
 INSERT INTO `detail_po` (`id_detail`, `id_po`, `id_produk`, `qty`) VALUES
@@ -1768,7 +1771,7 @@ INSERT INTO `detail_po` (`id_detail`, `id_po`, `id_produk`, `qty`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `diskon`
+-- Table structure for table `diskon`
 --
 
 CREATE TABLE `diskon` (
@@ -1780,7 +1783,7 @@ CREATE TABLE `diskon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `diskon`
+-- Dumping data for table `diskon`
 --
 
 INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `tgl_selesai`, `diskon`) VALUES
@@ -1789,7 +1792,7 @@ INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `tgl_selesai`, `d
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -1798,51 +1801,52 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'Atasan Pria '),
 (2, 'Atasan Wanita'),
 (3, 'Gamis '),
-(4, 'batik laki laki '),
-(5, 'baju batik wanita '),
+(4, 'Batik Laki - Laki'),
+(5, 'Baju Batik Wanita'),
 (6, 'Mukena '),
-(7, 'perlengkapan bayi '),
-(8, 'baju muslim pria'),
-(9, 'bawahan pria'),
+(7, 'Perlengkapan Bayi '),
+(8, 'Baju Muslim Pria'),
+(9, 'Bawahan Pria'),
 (10, 'Bawahan wanita'),
-(11, 'baju anak '),
+(11, 'Baju Anak '),
 (12, 'Karpet'),
 (13, 'Kerudung '),
 (14, 'Sepre '),
-(15, 'perlengkapan orang mening'),
+(15, 'Perlengkapan Orang Mening'),
 (16, 'Baju Seragam Sekolah');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kritik_saran`
+-- Table structure for table `kritik_saran`
 --
 
 CREATE TABLE `kritik_saran` (
   `id_kritik_saran` int(11) NOT NULL,
   `id_po` int(11) NOT NULL,
-  `isi_kritik_saran` text NOT NULL
+  `isi_kritik_saran` text NOT NULL,
+  `rating` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kritik_saran`
+-- Dumping data for table `kritik_saran`
 --
 
-INSERT INTO `kritik_saran` (`id_kritik_saran`, `id_po`, `isi_kritik_saran`) VALUES
-(1, 1, 'bagus bangett'),
-(2, 2, 'recomended banget');
+INSERT INTO `kritik_saran` (`id_kritik_saran`, `id_po`, `isi_kritik_saran`, `rating`) VALUES
+(1, 1, 'bagus bangett', 0),
+(2, 2, 'recomended banget', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelanggan`
+-- Table structure for table `pelanggan`
 --
 
 CREATE TABLE `pelanggan` (
@@ -1857,7 +1861,7 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pelanggan`
+-- Dumping data for table `pelanggan`
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nm_pel`, `alamat`, `no_tlpon`, `username`, `password`, `level_member`, `stat_reward`) VALUES
@@ -1903,7 +1907,7 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nm_pel`, `alamat`, `no_tlpon`, `userna
 (40, 'Riska', 'Ciomas, Kuningan', '845678901234', 'Riska', 'Riska', 0, 0),
 (41, ' Eris', 'Karangkamulyan, Kuningan', '856789012345', ' Eris', ' Eris', 0, 0),
 (42, ' Ami', 'Cijagamulya, Kuningan', '867890123456', ' Ami', ' Ami', 0, 0),
-(43, ' Eman', 'Kawungsari, Kuningan', '878901234567', ' Eman', ' Eman', 1, 1),
+(43, ' Syahdan', 'Kawungsari, Kuningan', '878901234567', 'Syahdan', 'Syahdan', 1, 1),
 (44, 'Emin', 'Cikubangmulya, Kuningan', '889012345678', 'Emin', 'Emin', 1, 1),
 (45, 'Nunung', 'Pajawanlor, Kuningan', '890123456789', 'Nunung', 'Nunung', 0, 0),
 (46, 'Serli', 'Sukadana, Kuningan', '812345678901', 'Serli', 'Serli', 0, 0),
@@ -2384,7 +2388,7 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nm_pel`, `alamat`, `no_tlpon`, `userna
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `po`
+-- Table structure for table `po`
 --
 
 CREATE TABLE `po` (
@@ -2403,11 +2407,11 @@ CREATE TABLE `po` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `po`
+-- Dumping data for table `po`
 --
 
 INSERT INTO `po` (`id_po`, `id_pelanggan`, `tgl_po`, `total_bayar`, `status_order`, `bukti_pembayaran`, `alamat_detail`, `prov`, `kota`, `ongkir`, `estimasi`, `expedisi`) VALUES
-(1, 239, '2022-01-01', '9987300', 4, '', 'Kuningan, Jawa Barat', 'Jawa Barat', 'Kuningan', '7000', '1-2 Hari', 'jne'),
+(1, 239, '2022-01-01', '9987300', 2, '', 'Kuningan, Jawa Barat', 'Jawa Barat', 'Kuningan', '7000', '1-2 Hari', 'jne'),
 (2, 432, '2022-01-02', '9867000', 4, '', 'Kuningan, Jawa Barat', 'Jawa Barat', 'Kuningan', '7000', '1-2 Hari', 'jne'),
 (3, 160, '2022-01-03', '34400700', 4, '', 'Kuningan, Jawa Barat', 'Jawa Barat', 'Kuningan', '7000', '1-2 Hari', 'jne'),
 (4, 300, '2022-01-04', '9180000', 4, '', 'Kuningan, Jawa Barat', 'Jawa Barat', 'Kuningan', '7000', '1-2 Hari', 'jne'),
@@ -3049,13 +3053,13 @@ INSERT INTO `po` (`id_po`, `id_pelanggan`, `tgl_po`, `total_bayar`, `status_orde
 (639, 13, '2023-10-08', '470000', 0, '0', 'Cigadung, Kuningan', 'DI Yogyakarta', 'Gunung Kidul', '21000', '3-6 Hari', 'jne'),
 (640, 13, '2023-10-08', '598900', 0, '0', 'Cigadung, Kuningan', 'DKI Jakarta', 'Jakarta Timur', '14000', '2-3 Hari', 'jne'),
 (641, 13, '2023-10-08', '591000', 0, '0', 'Cigadung, Kuningan', 'DI Yogyakarta', 'Kulon Progo', '21000', '3-6 Hari', 'jne'),
-(642, 1, '2023-10-08', '1559800', 0, '0', 'Garawangi, Kuningan', 'Kalimantan Timur', 'Kutai Barat', '81000', '5-7 Hari', 'jne'),
+(642, 1, '2023-10-08', '1559800', 4, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', 'Garawangi, Kuningan', 'Kalimantan Timur', 'Kutai Barat', '81000', '5-7 Hari', 'jne'),
 (643, 13, '2023-10-08', '534900', 0, '0', 'Cigadung, Kuningan', 'Bengkulu', 'Bengkulu Tengah', '50000', '5 Hari', 'jne');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -3069,7 +3073,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `harga`, `stok`, `gambar`) VALUES
@@ -3266,7 +3270,7 @@ INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `h
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -3280,7 +3284,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `password`, `level_user`) VALUES
@@ -3292,125 +3296,125 @@ INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `pass
 --
 
 --
--- Indeks untuk tabel `analisis`
+-- Indexes for table `analisis`
 --
 ALTER TABLE `analisis`
   ADD PRIMARY KEY (`id_analisis`);
 
 --
--- Indeks untuk tabel `chatting`
+-- Indexes for table `chatting`
 --
 ALTER TABLE `chatting`
   ADD PRIMARY KEY (`id_chatting`);
 
 --
--- Indeks untuk tabel `detail_po`
+-- Indexes for table `detail_po`
 --
 ALTER TABLE `detail_po`
   ADD PRIMARY KEY (`id_detail`);
 
 --
--- Indeks untuk tabel `diskon`
+-- Indexes for table `diskon`
 --
 ALTER TABLE `diskon`
   ADD PRIMARY KEY (`id_diskon`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `kritik_saran`
+-- Indexes for table `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
   ADD PRIMARY KEY (`id_kritik_saran`);
 
 --
--- Indeks untuk tabel `pelanggan`
+-- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
 
 --
--- Indeks untuk tabel `po`
+-- Indexes for table `po`
 --
 ALTER TABLE `po`
   ADD PRIMARY KEY (`id_po`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `analisis`
+-- AUTO_INCREMENT for table `analisis`
 --
 ALTER TABLE `analisis`
   MODIFY `id_analisis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1029;
 
 --
--- AUTO_INCREMENT untuk tabel `chatting`
+-- AUTO_INCREMENT for table `chatting`
 --
 ALTER TABLE `chatting`
-  MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_po`
+-- AUTO_INCREMENT for table `detail_po`
 --
 ALTER TABLE `detail_po`
   MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=649;
 
 --
--- AUTO_INCREMENT untuk tabel `diskon`
+-- AUTO_INCREMENT for table `diskon`
 --
 ALTER TABLE `diskon`
   MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `kritik_saran`
+-- AUTO_INCREMENT for table `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
   MODIFY `id_kritik_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `pelanggan`
+-- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=582;
 
 --
--- AUTO_INCREMENT untuk tabel `po`
+-- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
   MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=644;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

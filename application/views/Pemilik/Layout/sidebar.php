@@ -1,92 +1,75 @@
-<body class="bg-theme bg-theme2">
+<body>
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-	<!-- Start wrapper-->
-	<div id="wrapper">
+	<div class="wrapper">
+		<header class="header-top" header-theme="light">
+			<div class="container-fluid">
+				<div class="d-flex justify-content-between">
+					<div class="top-menu d-flex align-items-center">
+						<button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+						<div class="header-search">
+							<div class="input-group">
+								<span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+							</div>
+						</div>
+						<button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
+					</div>
+					<div class="top-menu d-flex align-items-center">
 
-		<!--Start sidebar-wrapper-->
-		<div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-			<div class="brand-logo">
-				<a href="index.html">
-					<img src="<?= base_url('asset/dashtreme-master/') ?>assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-					<h5 class="logo-text">Pemilik</h5>
-				</a>
+
+					</div>
+				</div>
 			</div>
-			<ul class="sidebar-menu do-nicescrol">
-				<li class="sidebar-header">MAIN NAVIGATION</li>
-				<li class="<?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cDashboard') {
-								echo 'active';
-							}  ?>">
-					<a href="<?= base_url('Pemilik/cDashboard') ?>">
-						<i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
-					</a>
-				</li>
-
-
-
-				<li class="sidebar-header">LAPORAN</li>
-				<li class="<?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cTransaksi') {
-								echo 'active';
-							}  ?>">
-					<a href="<?= base_url('Pemilik/cTransaksi') ?>">
-						<i class="zmdi zmdi-assignment-check"></i> <span>Laporan Transaksi</span>
-					</a>
-				</li>
-				<li class="sidebar-header">ANALISIS</li>
-
-				<li class="<?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cAnalisisRetensi') {
-								echo 'active';
-							}  ?>">
-					<a href="<?= base_url('Pemilik/cAnalisisRetensi') ?>">
-						<i class="zmdi zmdi-book"></i> <span>Analisis Retensi Pelanggan</span>
-					</a>
-				</li>
-				<li class="sidebar-header">KOMUNIKASI</li>
-
-				<li class="<?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cKritikSaran') {
-								echo 'active';
-							}  ?>">
-					<a href="<?= base_url('Pemilik/cKritikSaran') ?>">
-						<i class="zmdi zmdi-info"></i> <span>Kritik dan Saran Pelanggan</span>
-					</a>
-				</li>
-				<li>
-					<a href="<?= base_url('cLogin/logout') ?>">
-						<i class="zmdi zmdi-assignment-return"></i> <span>Logout</span>
-					</a>
-				</li>
-
-			</ul>
-
-		</div>
-		<!--End sidebar-wrapper-->
-
-		<!--Start topbar header-->
-		<header class="topbar-nav">
-			<nav class="navbar navbar-expand fixed-top">
-				<ul class="navbar-nav mr-auto align-items-center">
-					<li class="nav-item">
-						<a class="nav-link toggle-menu" href="javascript:void();">
-							<i class="icon-menu menu-icon"></i>
-						</a>
-					</li>
-					<li class="nav-item">
-						<form class="search-bar">
-							<input type="text" class="form-control" placeholder="Enter keywords">
-							<a href="javascript:void();"><i class="icon-magnifier"></i></a>
-						</form>
-					</li>
-				</ul>
-
-				<ul class="navbar-nav align-items-center right-nav-link">
-					<li class="nav-item dropdown-lg">
-						<a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-							<i class="fa fa-envelope-open-o"></i></a>
-					</li>
-					<li class="nav-item dropdown-lg">
-						<a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-							<i class="fa fa-bell-o"></i></a>
-					</li>
-				</ul>
-			</nav>
 		</header>
-		<!--End topbar header-->
+
+		<div class="page-wrap">
+			<div class="app-sidebar colored">
+				<div class="sidebar-header">
+					<a class="header-brand" href="index.html">
+						<div class="logo-img">
+							<img src="<?= base_url('asset/themekit-master/') ?>src/img/brand-white.svg" class="header-brand-img" alt="lavalite">
+						</div>
+						<span class="text">SumiButik</span>
+					</a>
+					<button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
+					<button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
+				</div>
+
+				<div class="sidebar-content">
+					<div class="nav-container">
+						<nav id="main-menu-navigation" class="navigation-main">
+							<div class="nav-lavel">Navigation</div>
+							<div class="nav-item <?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cDashboard') {
+														echo 'active';
+													}  ?>">
+								<a href="<?= base_url('Pemilik/cDashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+							</div>
+
+							<div class="nav-lavel">LAPORAN</div>
+
+							<div class="nav-item <?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cTransaksi') {
+														echo 'active';
+													}  ?>">
+								<a href="<?= base_url('Pemilik/cTransaksi') ?>"><i class="ik ik-book"></i><span>Laporan Transaksi</span></a>
+							</div>
+							<div class="nav-lavel">ANALISIS</div>
+							<div class="nav-item <?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cAnalisisRetensi') {
+														echo 'active';
+													}  ?>">
+								<a href="<?= base_url('Pemilik/cAnalisisRetensi') ?>"><i class="ik ik-bar-chart-line"></i><span>Analisis Retensi Pelanggan</span></a>
+							</div>
+							<!-- <div class="nav-item <?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cKritikSaran') {
+															echo 'active';
+														}  ?>">
+								<a href="<?= base_url('Pemilik/cKritikSaran') ?>"><i class="ik ik-info"></i><span>Kritik Saran</span></a>
+							</div> -->
+
+							<div class="nav-item">
+								<a href="<?= base_url('cLogin/logout') ?>"><i class="ik ik-power"></i><span>LogOut</span></a>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>

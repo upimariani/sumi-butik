@@ -23,7 +23,10 @@
 								<li class="<?php if ($this->uri->segment(1) == 'Pelanggan' && $this->uri->segment(2) == 'cPesananSaya') {
 												echo 'active';
 											}  ?>">
-									<a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya</a>
+									<?php
+									$notif_bayar = $this->db->query("SELECT COUNT(id_po) as notif FROM `po` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "' AND status_order='0'")->row();
+									?>
+									<a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Pesanan Saya <span class="badge bg-danger"><?= $notif_bayar->notif ?></span></a>
 								</li>
 								<li class="<?php if ($this->uri->segment(1) == 'Pelanggan' && $this->uri->segment(2) == 'cProfil') {
 												echo 'active';
@@ -33,7 +36,21 @@
 								<li class="<?php if ($this->uri->segment(1) == 'Pelanggan' && $this->uri->segment(2) == 'cChatting') {
 												echo 'active';
 											}  ?>">
-									<a href="<?= base_url('Pelanggan/cChatting') ?>">Chatting</a>
+									<?php
+									$notif = 0;
+									$terakhir_chat = $this->db->query("SELECT * FROM `chatting` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "' ORDER BY time DESC LIMIT 1")->row();
+									if ($terakhir_chat) {
+
+										if ($terakhir_chat->admin_send != NULL) {
+											$notif_chatting = $this->db->query("SELECT COUNT(id_chatting) as jml FROM `chatting` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "' AND pelanggan_send IS NULL ORDER BY time")->row();
+											$notif = $notif_chatting->jml;
+										} else {
+											$notif = 0;
+										}
+									}
+
+									?>
+									<a href="<?= base_url('Pelanggan/cChatting') ?>">Chatting <span class="badge bg-warning"><?= $notif ?></span></a>
 								</li>
 								<li> <strong>
 										<?= $this->session->userdata('nama') ?></strong>, <small>Level member anda adalah <strong><?php if ($this->session->userdata('level') == '0') {
@@ -94,4 +111,5 @@
 			</div>
 		</div>
 	</header>
+
 	<!-- Header Section End -->
