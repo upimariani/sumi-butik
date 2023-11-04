@@ -18,14 +18,10 @@
 					</div>
 					<div class="top-menu d-flex align-items-center">
 						<?php
-						$jml = 0;
-						$notif_pesan = $this->db->query("SELECT * FROM `chatting` GROUP BY id_pelanggan")->result();
-						foreach ($notif_pesan as $key => $value) {
-							$jml += 1;
-						}
+						$notif_chatting = $this->db->query("SELECT COUNT(id_chatting) as notif FROM `chatting` WHERE admin_send IS NULL AND stat_read='0'")->row();
+						$notif = $notif_chatting->notif;
 						?>
-
-						<button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="ik ik-message-square"></i><span class="badge bg-success"><?= $jml ?></span></button>
+						<button type="button" class="nav-link ml-10 right-sidebar-toggle"><i class="ik ik-message-square"></i><span class="badge bg-success"><?= $notif ?></span></button>
 
 
 

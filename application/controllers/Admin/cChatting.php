@@ -10,6 +10,9 @@ class cChatting extends CI_Controller
 	}
 	public function index()
 	{
+
+
+
 		$data = array(
 			'chatting' => $this->mChatting->chatting()
 		);
@@ -20,6 +23,13 @@ class cChatting extends CI_Controller
 	}
 	public function view_chatting($id_pelanggan)
 	{
+		//update status read
+		$data_notif = array(
+			'stat_read' => '1'
+		);
+		$this->db->where('id_pelanggan', $id_pelanggan);
+		$this->db->where('admin_send', NULL);
+		$this->db->update('chatting', $data_notif);
 		$data = array(
 			'id' => $id_pelanggan,
 			'chatting' => $this->mChatting->view_chatting($id_pelanggan)

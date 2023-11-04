@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb__links">
-					<a href="./index.html"><i class="fa fa-home"></i> Home</a>
+					<a href="<?= base_url('Pelanggan/cHome') ?>"><i class="fa fa-home"></i> Home</a>
 					<span>Shopping cart</span>
 				</div>
 			</div>
@@ -16,12 +16,7 @@
 <!-- Checkout Section Begin -->
 <section class="checkout spad">
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h6 class="coupon__link"><span class="icon_tag_alt"></span> <a href="#">Have a coupon?</a> Click
-					here to enter your code.</h6>
-			</div>
-		</div>
+
 		<form action="<?= base_url('Pelanggan/cCheckout/order') ?>" method="POST" class="checkout__form">
 			<?php
 			$data_pelanggan = $this->db->query("SELECT * FROM `pelanggan` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();

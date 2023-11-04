@@ -24,7 +24,7 @@ class cAnalisis extends CI_Controller
 		$norm_f = array();
 		$norm_m = array();
 
-		echo '<table border="1">';
+		// echo '<table border="1">';
 		foreach ($data['all'] as $key => $value) {
 			$akhir = date_create($value->akhir_transaksi);
 			$awal = date_create($value->awal_transaksi);
@@ -37,14 +37,14 @@ class cAnalisis extends CI_Controller
 			$pelanggan[] = $value->id_pelanggan;
 
 
-			echo '<tr>';
-			echo '<td>' . $value->id_pelanggan . '</td>';
-			echo '<td>' . $value->recency . '</td>';
-			echo '<td>' . $value->frequency . '</td>';
-			echo '<td>' . $value->monetary . '</td>';
-			echo '</tr>';
+			// echo '<tr>';
+			// echo '<td>' . $value->id_pelanggan . '</td>';
+			// echo '<td>' . $value->recency . '</td>';
+			// echo '<td>' . $value->frequency . '</td>';
+			// echo '<td>' . $value->monetary . '</td>';
+			// echo '</tr>';
 		}
-		echo '</table>';
+		// echo '</table>';
 
 		$min_l = min($length);
 		$max_l = max($length);
@@ -89,15 +89,15 @@ class cAnalisis extends CI_Controller
 		$c2_m = $norm_m[1];
 
 
-		echo '<table border="1">';
-		echo '<tr>';
-		echo '<td>R</td>';
-		echo '<td>F</td>';
-		echo '<td>M</td>';
-		echo '<td>Centroid 1</td>';
-		echo '<td>Centroid 2</td>';
-		echo '<td>Status Klaster</td>';
-		echo '</tr>';
+		// echo '<table border="1">';
+		// echo '<tr>';
+		// echo '<td>R</td>';
+		// echo '<td>F</td>';
+		// echo '<td>M</td>';
+		// echo '<td>Centroid 1</td>';
+		// echo '<td>Centroid 2</td>';
+		// echo '<td>Status Klaster</td>';
+		// echo '</tr>';
 		// menentukan keseluruhan c1 untuk semua pelanggan
 		$klaster1 = array();
 		$centroid1 = array();
@@ -105,24 +105,24 @@ class cAnalisis extends CI_Controller
 		for ($d = 0; $d < sizeof($norm_r); $d++) {
 			$centroid1[] = sqrt((pow(($norm_r[$d] - $c1_r), 2)) + (pow(($norm_f[$d] - $c1_f), 2)) + (pow(($norm_m[$d] - $c1_m), 2)) + (pow(($norm_l[$d] - $c1_l), 2)));
 			$centroid2[] = sqrt((pow(($norm_r[$d] - $c2_r), 2)) + (pow(($norm_f[$d] - $c2_f), 2)) + (pow(($norm_m[$d] - $c2_m), 2)) + (pow(($norm_l[$d] - $c2_l), 2)));
-			echo '<tr>';
-			echo '<td>' . $norm_r[$d] . '</td>';
-			echo '<td>' . $norm_f[$d] . '</td>';
-			echo '<td>' . $norm_m[$d] . '</td>';
-			echo '<td>' . $centroid1[$d] . '</td>';
-			echo '<td>' . $centroid2[$d] . '</td>';
+			// echo '<tr>';
+			// echo '<td>' . $norm_r[$d] . '</td>';
+			// echo '<td>' . $norm_f[$d] . '</td>';
+			// echo '<td>' . $norm_m[$d] . '</td>';
+			// echo '<td>' . $centroid1[$d] . '</td>';
+			// echo '<td>' . $centroid2[$d] . '</td>';
 
 			$data_min = min($centroid1[$d], $centroid2[$d]);
 			if ($data_min == $centroid1[$d]) {
 				$klaster1[] = '1';
-				echo '<td>Klaster 1</td>';
+				// echo '<td>Klaster 1</td>';
 			} else if ($data_min == $centroid2[$d]) {
 				$klaster1[] = '2';
-				echo '<td>Klaster 2</td>';
+				// echo '<td>Klaster 2</td>';
 			}
-			echo '</tr>';
+			// echo '</tr>';
 		}
-		echo '</table>';
+		// echo '</table>';
 
 		// ------------------------------------melakukan iterasi kedua
 
@@ -333,16 +333,6 @@ class cAnalisis extends CI_Controller
 			$this->db->insert('analisis', $insert);
 		}
 	}
-
-	// public function coba($nama)
-	// {
-	//     echo 'haloo' . $nama;
-	// }
-	// public function panggil()
-	// {
-	//     $nama = 'Hati';
-	//     $this->coba($nama);
-	// }
 }
 
 /* End of file cAnalisisDumy.php */

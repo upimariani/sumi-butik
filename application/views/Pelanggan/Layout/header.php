@@ -42,8 +42,8 @@
 									if ($terakhir_chat) {
 
 										if ($terakhir_chat->admin_send != NULL) {
-											$notif_chatting = $this->db->query("SELECT COUNT(id_chatting) as jml FROM `chatting` WHERE id_pelanggan='" . $this->session->userdata('id_pelanggan') . "' AND pelanggan_send IS NULL ORDER BY time")->row();
-											$notif = $notif_chatting->jml;
+											$notif_chatting = $this->db->query("SELECT COUNT(id_chatting) as notif FROM `chatting` WHERE stat_read = 0 AND pelanggan_send is NULL AND id_pelanggan='" . $this->session->userdata('id_pelanggan') . "'")->row();
+											$notif = $notif_chatting->notif;
 										} else {
 											$notif = 0;
 										}

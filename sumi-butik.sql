@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 03:12 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Waktu pembuatan: 04 Nov 2023 pada 06.34
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `analisis`
+-- Struktur dari tabel `analisis`
 --
 
 CREATE TABLE `analisis` (
@@ -37,7 +37,7 @@ CREATE TABLE `analisis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `analisis`
+-- Dumping data untuk tabel `analisis`
 --
 
 INSERT INTO `analisis` (`id_analisis`, `id_pelanggan`, `periode`, `tahun`, `cluster`) VALUES
@@ -582,7 +582,6 @@ INSERT INTO `analisis` (`id_analisis`, `id_pelanggan`, `periode`, `tahun`, `clus
 (539, 30, 3, 2023, 0),
 (540, 31, 3, 2023, 0),
 (541, 32, 3, 2023, 0),
-(542, 33, 3, 2023, 0),
 (543, 34, 3, 2023, 0),
 (544, 35, 3, 2023, 0),
 (545, 36, 3, 2023, 1),
@@ -1073,7 +1072,7 @@ INSERT INTO `analisis` (`id_analisis`, `id_pelanggan`, `periode`, `tahun`, `clus
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chatting`
+-- Struktur dari tabel `chatting`
 --
 
 CREATE TABLE `chatting` (
@@ -1082,29 +1081,36 @@ CREATE TABLE `chatting` (
   `id_user` int(11) NOT NULL,
   `pelanggan_send` text DEFAULT NULL,
   `admin_send` text DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `stat_read` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `chatting`
+-- Dumping data untuk tabel `chatting`
 --
 
-INSERT INTO `chatting` (`id_chatting`, `id_pelanggan`, `id_user`, `pelanggan_send`, `admin_send`, `time`) VALUES
-(1, 1, 1, 'hai', NULL, '2023-10-19 01:18:08'),
-(2, 2, 1, 'hai admin', NULL, '2023-10-19 01:18:11'),
-(3, 1, 1, NULL, 'haloo pelanggan', '2023-10-19 00:42:55'),
-(4, 1, 1, NULL, 'hai anah', '2023-10-19 00:42:58'),
-(5, 2, 1, NULL, 'ada yang bisa d bantu?', '2023-10-19 00:43:00'),
-(6, 1, 1, NULL, 'ada yng bisa dibantu?', '2023-10-19 00:43:02'),
-(7, 1, 1, NULL, 'ada yng bisa dibantu?', '2023-10-19 00:43:05'),
-(8, 1, 1, NULL, 'haloo', '2023-10-19 00:44:30'),
-(9, 1, 1, NULL, 'haii', '2023-10-19 03:44:38'),
-(10, 1, 1, NULL, 'silahkan', '2023-10-19 01:13:16');
+INSERT INTO `chatting` (`id_chatting`, `id_pelanggan`, `id_user`, `pelanggan_send`, `admin_send`, `time`, `stat_read`) VALUES
+(1, 1, 1, 'hai', NULL, '2023-11-01 14:47:38', 1),
+(2, 2, 1, 'hai admin', NULL, '2023-11-01 14:56:08', 1),
+(3, 1, 1, NULL, 'haloo pelanggan', '2023-11-01 14:47:38', 1),
+(4, 1, 1, NULL, 'hai anah', '2023-11-01 14:47:38', 1),
+(5, 2, 1, NULL, 'ada yang bisa d bantu?', '2023-11-02 08:05:31', 1),
+(6, 1, 1, NULL, 'ada yng bisa dibantu?', '2023-11-01 14:47:38', 1),
+(7, 1, 1, NULL, 'ada yng bisa dibantu?', '2023-11-01 14:47:38', 1),
+(8, 1, 1, NULL, 'haloo', '2023-11-01 14:47:38', 1),
+(9, 1, 1, NULL, 'haii', '2023-11-01 14:47:38', 1),
+(10, 1, 1, NULL, 'silahkan', '2023-11-01 14:47:38', 1),
+(12, 1, 1, 'apakah barang ready?', NULL, '2023-11-01 14:47:38', 1),
+(13, 1, 1, NULL, 'ready', '2023-11-01 14:47:38', 1),
+(14, 1, 1, NULL, 'kamu mau pesan yg mana', '2023-11-01 14:48:15', 1),
+(15, 1, 1, 'Aku pengen yg warna abu', NULL, '2023-11-01 14:56:06', 1),
+(16, 3, 1, 'halo admin', NULL, '2023-11-02 08:06:14', 1),
+(17, 3, 1, NULL, 'haloo ruliii', '2023-11-02 08:06:38', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_po`
+-- Struktur dari tabel `detail_po`
 --
 
 CREATE TABLE `detail_po` (
@@ -1115,7 +1121,7 @@ CREATE TABLE `detail_po` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_po`
+-- Dumping data untuk tabel `detail_po`
 --
 
 INSERT INTO `detail_po` (`id_detail`, `id_po`, `id_produk`, `qty`) VALUES
@@ -1766,12 +1772,14 @@ INSERT INTO `detail_po` (`id_detail`, `id_po`, `id_produk`, `qty`) VALUES
 (645, '642', '1', 1),
 (646, '642', '8', 1),
 (647, '643', '3', 1),
-(648, '643', '6', 1);
+(648, '643', '6', 1),
+(649, '644', '7', 1),
+(650, '644', '1', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diskon`
+-- Struktur dari tabel `diskon`
 --
 
 CREATE TABLE `diskon` (
@@ -1783,7 +1791,7 @@ CREATE TABLE `diskon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `diskon`
+-- Dumping data untuk tabel `diskon`
 --
 
 INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `tgl_selesai`, `diskon`) VALUES
@@ -1792,7 +1800,7 @@ INSERT INTO `diskon` (`id_diskon`, `id_produk`, `nama_diskon`, `tgl_selesai`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -1801,7 +1809,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -1825,28 +1833,27 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kritik_saran`
+-- Struktur dari tabel `kritik_saran`
 --
 
 CREATE TABLE `kritik_saran` (
   `id_kritik_saran` int(11) NOT NULL,
   `id_po` int(11) NOT NULL,
-  `isi_kritik_saran` text NOT NULL,
-  `rating` int(11) NOT NULL
+  `isi_kritik_saran` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kritik_saran`
+-- Dumping data untuk tabel `kritik_saran`
 --
 
-INSERT INTO `kritik_saran` (`id_kritik_saran`, `id_po`, `isi_kritik_saran`, `rating`) VALUES
-(1, 1, 'bagus bangett', 0),
-(2, 2, 'recomended banget', 0);
+INSERT INTO `kritik_saran` (`id_kritik_saran`, `id_po`, `isi_kritik_saran`) VALUES
+(1, 1, 'bagus bangett'),
+(2, 2, 'recomended banget');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pelanggan`
+-- Struktur dari tabel `pelanggan`
 --
 
 CREATE TABLE `pelanggan` (
@@ -1861,7 +1868,7 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pelanggan`
+-- Dumping data untuk tabel `pelanggan`
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nm_pel`, `alamat`, `no_tlpon`, `username`, `password`, `level_member`, `stat_reward`) VALUES
@@ -1897,7 +1904,6 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nm_pel`, `alamat`, `no_tlpon`, `userna
 (30, 'Beni', 'Ancaran, Kuningan', '834567890123', 'Beni', 'Beni', 0, 0),
 (31, 'Melin', 'Datar, Kuningan', '845678901234', 'Melin', 'Melin', 0, 0),
 (32, 'Larisa', 'Puncak, Kuningan', '856789012345', 'Larisa', 'Larisa', 0, 0),
-(33, 'Eman', 'Sindangjawa, Kuningan', '867890123456', 'Eman', 'Eman', 0, 0),
 (34, 'Linda', 'Cigintung, Kuningan', '878901234567', 'Linda', 'Linda', 0, 0),
 (35, ' Elis', 'Cibinuang, Kuningan', '889012345678', ' Elis', ' Elis', 0, 0),
 (36, 'Anita', 'Cilimusari, Kuningan', '890123456789', 'Anita', 'Anita', 1, 1),
@@ -2388,7 +2394,7 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nm_pel`, `alamat`, `no_tlpon`, `userna
 -- --------------------------------------------------------
 
 --
--- Table structure for table `po`
+-- Struktur dari tabel `po`
 --
 
 CREATE TABLE `po` (
@@ -2407,7 +2413,7 @@ CREATE TABLE `po` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `po`
+-- Dumping data untuk tabel `po`
 --
 
 INSERT INTO `po` (`id_po`, `id_pelanggan`, `tgl_po`, `total_bayar`, `status_order`, `bukti_pembayaran`, `alamat_detail`, `prov`, `kota`, `ongkir`, `estimasi`, `expedisi`) VALUES
@@ -3054,12 +3060,13 @@ INSERT INTO `po` (`id_po`, `id_pelanggan`, `tgl_po`, `total_bayar`, `status_orde
 (640, 13, '2023-10-08', '598900', 0, '0', 'Cigadung, Kuningan', 'DKI Jakarta', 'Jakarta Timur', '14000', '2-3 Hari', 'jne'),
 (641, 13, '2023-10-08', '591000', 0, '0', 'Cigadung, Kuningan', 'DI Yogyakarta', 'Kulon Progo', '21000', '3-6 Hari', 'jne'),
 (642, 1, '2023-10-08', '1559800', 4, 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-11.jpg', 'Garawangi, Kuningan', 'Kalimantan Timur', 'Kutai Barat', '81000', '5-7 Hari', 'jne'),
-(643, 13, '2023-10-08', '534900', 0, '0', 'Cigadung, Kuningan', 'Bengkulu', 'Bengkulu Tengah', '50000', '5 Hari', 'jne');
+(643, 13, '2023-10-08', '534900', 0, '0', 'Cigadung, Kuningan', 'Bengkulu', 'Bengkulu Tengah', '50000', '5 Hari', 'jne'),
+(644, 3, '2023-11-02', '736000', 0, '0', 'Kawahmanuk, Kuningan', 'Jawa Barat', 'Kuningan', '7000', '1-2 Hari', 'jne');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produk`
+-- Struktur dari tabel `produk`
 --
 
 CREATE TABLE `produk` (
@@ -3073,17 +3080,17 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `produk`
+-- Dumping data untuk tabel `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `harga`, `stok`, `gambar`) VALUES
-(1, 1, 'M231 Kemeja Pria Cotton Pique Panjang Army 1792D', 'Material: Katun PiqueSize pada Model:Pria', 449000, 158, 'user-2935527_1280.png'),
+(1, 1, 'M231 Kemeja Pria Cotton Pique Panjang Army 1792D', 'Material: Katun PiqueSize pada Model:Pria', 449000, 157, 'user-2935527_1280.png'),
 (2, 1, 'Hey Man Kemeja Polos Oxford LS - Darkgrey', 'Available Size ( Lebar dada x Panjang baju )\n.\nS : (50cm x 70cm)\nM : (52cm x 72cm)\nL : (56cm x 75cm)\nXL : (60 cm x 78cm)\n.\nModel pake size M tinggi 173 bb 68\n.\nMaterial Premium Oxpord\n.\nCuttingan slimfit serta jahitan yg kuat & rapi.\n', 229000, 239, 'user-2935527_1280.png'),
 (3, 1, 'MANZONE Kemeja Koko Lengan Pendek Pria HAIDAR - WHITE', 'Nama Style: Mzc - Haidar \nDeskripsi: Kaftan Ss - Embroidery \nFabric: Embroidery + Solid \nFitting: Comfort Fit \nDescription: Kaftan Lengan Pendek Dengan Cut & Sew Kombinasi Solid Fabric & Embroidery Fabric. Placket Non Kansai, Terdapat 2 Kantong Di Sisi Samping. Fitting Comfort Fit Memberikan Kesan Nyaman Dan “Rilex” Ketika Dipakai, Comfort Fit ', 449900, 160, 'user-2935527_1280.png'),
 (4, 1, 'Ukuran 15,5 Slimfit Stanley Adams Kemeja Pria Formal Lengan Panjang Ukuran 15,5 Slimfit / Size 15.5 Slimfit / Setara Size S  ', 'Selamat datang di kakstoreID, produk original kak, foto hasil jepret sendiri, dengan sepenuh hati kami akan melayani..silahkan kak dilihat lihat dulu produknya.. jika ada hal yang ingin ditanyakan atau didiskusikan silahkan kak bisa chat kami melalui fitur chat.... lalu....dibeli yah kak.. \n\n-Etalase (upload-an produk) ini ', 159000, 217, 'user-2935527_1280.png'),
 (5, 1, 'Vanfive Kemeja Pria Koko Panjang Abu 1966', '-Brand : Vanfive\n-Kemeja Kemko Koko\n-Kemeja Desain Lengan Panjang\n-Modern Slim Fit\n-Kancing Depat\n-Kantong 1\n\nMaterial Bahan : Katun\nSize Chart:\nLebar Dada (cm) x Panjang Kemeja(cm):\n\nS: 49 cm x 69.5 cm\nM: 51 cm x 71.5 cm\nL: 53 cm x 73.5 cm\nXL: 55 cm x 75.5 cm\nXXL : 58 cm x 78.5 cm\nXXXL : 60.5 cm x 80 cm\n\n*Toleransi selisih 1-2cm\nWarna Tolong Perhatiakn Warna nya\n*Warna yang terlihat pada gambar mungkin tidak 100% sama dengan produk yang sebenarnya, disebabkan faktor lighting pada proses photoshoot, atau kondisi gadget yang digunakan untuk melihat gambar\n\n*Untuk pembelian Online, mohon pertimbangkan toleransi selesih perbedaan warna dan ukuran\n\nGarment care:\n1. Cuci dengan air suhu dibawah 40 derajat celcius\n2. Cuci dengan warna yang senada\n3. Jangan menggunakan pemutih\n4. Setrika dengan suhu sedang\n5. Cuci dengan membalikan luar-dalam pakaian.\n\nKebijakan Pengembalian Barang :\n\n1. Dalam jangka waktu 2x24 jam sejak barang tersebut diterima oleh konsumen (jika pesanan tersebut sudah diselesaikan /status berubah).\n2. Menyertakan video unboxing lengkap dengan menampilkan semua sisi paket untuk memastikan bahwa paket tersebut masih baru dan belum pernah dibongkar.\n3. Pricetag/label harga di produk masih ada dan produk belum pernah dicuci\n4. Kirimkan bukti resi pengembalian tersebut.\n5. Setelah barang sampai, kami akan melakukan pengecekan barang tersebut. jika ada kesalahan dari seller maka akan dilakukan 2 opsi yaitu :\na. Pengembalian barang baru.\nb. Pengembalian dana akan diproses dengan batas waktu 7x24 jam kerja (jika produk tersebut kosong).\n\nCatatan: Tidak berlaku untuk tukar size yang di karenakan kesalahan konsumen.', 429000, 197, 'user-2935527_1280.png'),
 (6, 1, 'BAJU KOKO PRIA SLIM FIT KEMEJA KOKO PRIA PANJANG BEST SELLER DK25', 'SEMUA FOTO PRODUK YANG DIPAJANG DIFOTO DARI BAJU ASLINYA DIJAMIN 100 % \n\nModel dan Motif hanya muncul 1 x setiap release tidak pernah restock karena bahan limited so pastinya limited item , lets klik buy sebelum keduluan pembeli lain yah ,Penjualan terus berjalan setiap saat jadi stok baru bisa confirm saat pembayaran diterima.\n\nMotif : Koko Modern , Unik, fashionable,  Memberi kesan mewah dan keren saat dipakai boleh disandingkan dengan barang2 dimall\n\nBahan : Katun koko, adem dan nyaman dipakai, Kualitas boleh diadu dengan di Mall , karena produk kami masuk department store.\n\nCutting Body fit , kenapa body fit ? \nkarena baju body fit membuat \ntampilan tubuh kamu lebih macho dan menarik.\n\nModel difoto menggunakan ukuran M \n\nSize chart :\n\nM : \n\nPundak : 42 CM\nLingkar dada : 100 CM\nLingkar perut : 94 CM\nPanjang Badan : 72 CM\nPanjang Tangan : 57 CM \n\nL : \n\nPundak : 44 CM\nLingkar dada : 102 CM\nLingkar perut : 96 CM\nPanjang Badan : 72 CM\nPanjang Tangan : 60 CM \n\nXL : \n\nPundak : 46 CM\nLingkar dada : 108 CM\nLingkar perut : 102 CM\nPanjang Badan : 75 CM\nPanjang Tangan : 61  CM\n\n#bajukoko #kemejakoko #bajukokopria', 135000, 149, 'user-2935527_1280.png'),
-(7, 1, 'kemeja batik tulis pria lengan pendek dalam lapis furing alka 23', 'AKUN YANG MENGUTAMAKAN KUALITAS, BUKAN HARGA MURAH \n.\nFOKUS PADA GAMBAR SEKARANG YANG ADA DI DISPLAY\n.\nBatik tulis pekalongan yang di buat dengan pewarnaan dan tangan berkelas. Bisa untuk menambah penampilan anda lebih kalem. Cocok di pakai untuk acara santai maupun resmi. Segera Dapat kan produk dari kami..\n\nSize : M L XL XXL\nDetail size :\nM : lebar dada 54cm × panjang 73cm\nL : lebar dada 56cm × panjang 73cm\nXL : lebar dada 58cm × panjang 75cm\nXXL : lebar dada 60cm × panjang 75cm\n\nBahan : katun primisima no 1 tebal halus , dalam berlapis furing \n\nhalus adem dan nyaman di pakai tidak mudah kusut dan tidak luntur, mengutamakan kualitas. \n\nKetentuan Order\n*Tanyakan Stock terlebih dahulu sebelum pesan\nKarena stock bisa berubah setiap saat\nhappy shopping bosku', 280000, 147, 'user-2935527_1280.png'),
+(7, 1, 'kemeja batik tulis pria lengan pendek dalam lapis furing alka 23', 'AKUN YANG MENGUTAMAKAN KUALITAS, BUKAN HARGA MURAH \n.\nFOKUS PADA GAMBAR SEKARANG YANG ADA DI DISPLAY\n.\nBatik tulis pekalongan yang di buat dengan pewarnaan dan tangan berkelas. Bisa untuk menambah penampilan anda lebih kalem. Cocok di pakai untuk acara santai maupun resmi. Segera Dapat kan produk dari kami..\n\nSize : M L XL XXL\nDetail size :\nM : lebar dada 54cm × panjang 73cm\nL : lebar dada 56cm × panjang 73cm\nXL : lebar dada 58cm × panjang 75cm\nXXL : lebar dada 60cm × panjang 75cm\n\nBahan : katun primisima no 1 tebal halus , dalam berlapis furing \n\nhalus adem dan nyaman di pakai tidak mudah kusut dan tidak luntur, mengutamakan kualitas. \n\nKetentuan Order\n*Tanyakan Stock terlebih dahulu sebelum pesan\nKarena stock bisa berubah setiap saat\nhappy shopping bosku', 280000, 146, 'user-2935527_1280.png'),
 (8, 1, 'Baju Wearpack Kemeja Safety K3 Proyek Tambang Lengan Panjang  - Pakaian Seragam Werpak Kerja Atasan Scotlight Reflector Refle', 'Kemeja PDL Lengan Panjang by Konveksi Jakarta\n\nHarga terbaik untuk produk dengan kualitas sekelas.\n\nBahan : American Drill - Verlando\n\nUkuran :\nS / M / L / XL / XXL / 3XL / 4XL\nUntuk ukuran 3XL dan 4XL silahkan order di link Jumbo etalase toko\n\nSize Chart\nS (Lebar: 52cm, Panjang: 70cm, Tangan: 58cm)\nM (Lebar: 54cm, Panjang: 71cm, Tangan: 59cm)\nL (Lebar: 56m, Panjang: 72cm, Tangan: 60cm)\nXL (Lebar: 58cm, Panjang: 73cm, Tangan: 61cm)\nXXL (Lebar: 60cm, Panjang: 74cm, Tangan: 62cm)\n3XL (Lebar: 65cm, Panjang: 76cm, Tangan: 63cm)\n4XL (Lebar: 70cm, Panjang: 78cm, Tangan: 64cm)\n\nPilihan Warna :\nReady (Hitam/Putih/Hijau Army/Abu/Cream/Khaki/Navy/Biru/Merah/Maroon\nUntuk warna lain bisa lansung chat Admin.\n\nNotes: \nTERIMA JASA BORDIR\nUntuk Jasa Bordir Silahkan Chat Admin.\n\nTERIMA PESANAN PARTAI\nUntuk Pesanan Partai Silahkan Chat Admin\n\nWarna baju dengan foto kemungkinan ada perbedaan 5-10% karena efek pantulan cahaya saat foto diambil dan kontras layar gadget masing-masing.\n\nInformasi lebih lanjut chat Admin\n\nTerimakasih.', 130000, 161, 'user-2935527_1280.png'),
 (9, 1, 'AL6 Kemeja Anak Cowok Modis Tampan Modern Good Quality SIZE LENGKAP', 'HARGA GROSIR LAIN sesuai PILIHAN SIZE ', 108000, 199, 'user-2935527_1280.png'),
 (10, 1, 'Atasan Kemeja Batik Pria Regular 1083', 'Kemeja Batik Sudjiwo Pria Lengan Panjang Premium\n\n Batik printing\n Katun prima sanforized\n Jahitan kuat & rapi kualitas tailor\n Lapis furing\n Bergaransi\n\nSize Chart\nS  : LD 100 PB 70 PL 59\nM  : LD 104 PM 71 PL 60\nL  : LD 108 PB 72 PL 61\nXL : LD 112 PB 73 PL 63\nXXL: LD 116 PB 74 PL 64\n\nDisclaimer: \n1. Perbedaan warna sangat mungkin terjadi dikarenakan faktor layar perangkat yang digunakan berbeda, akan tetapi kami mengupayakan warna semirip mungkin antara foto dan aslinya.\n2. Pemilihan size yang tepat, akan meningkatkan kenyamanan anda dalam mengenakan batik dari Sudjiwo.\n\nPERHATIAN\n1. Chat admin dulu ya sebelum cek out, buat tanyain stok.\n2. Kalau stok lagi kosong, kami akan chat kakak buat konfirmasi \n3. Jika dalam 1x24 jam tidak ada konfirmasi dari kakak, akan kami kirim motif acak yang mendekati dengan motif pesanan kakak.\n4. Mohon kerjasamanya ya kak.. Terimakasih, selamat belanja.\n\n#kemejabatikpria#batikpria#kemejabatiksolo#kemejabatiklenganpanjang#batikkantor#batikpernikahan\n#batikwisuda#batikkondangan#batikslimfit#batikpriaslimfit#batiklapisfuring#batikkerja#batikseragam\n#batikwisuda#jualbatik#kemejabtatikmodern', 289000, 254, 'user-2935527_1280.png'),
@@ -3270,7 +3277,7 @@ INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `deskripsi`, `h
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -3284,7 +3291,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `password`, `level_user`) VALUES
@@ -3296,125 +3303,125 @@ INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `pass
 --
 
 --
--- Indexes for table `analisis`
+-- Indeks untuk tabel `analisis`
 --
 ALTER TABLE `analisis`
   ADD PRIMARY KEY (`id_analisis`);
 
 --
--- Indexes for table `chatting`
+-- Indeks untuk tabel `chatting`
 --
 ALTER TABLE `chatting`
   ADD PRIMARY KEY (`id_chatting`);
 
 --
--- Indexes for table `detail_po`
+-- Indeks untuk tabel `detail_po`
 --
 ALTER TABLE `detail_po`
   ADD PRIMARY KEY (`id_detail`);
 
 --
--- Indexes for table `diskon`
+-- Indeks untuk tabel `diskon`
 --
 ALTER TABLE `diskon`
   ADD PRIMARY KEY (`id_diskon`);
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indexes for table `kritik_saran`
+-- Indeks untuk tabel `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
   ADD PRIMARY KEY (`id_kritik_saran`);
 
 --
--- Indexes for table `pelanggan`
+-- Indeks untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
 
 --
--- Indexes for table `po`
+-- Indeks untuk tabel `po`
 --
 ALTER TABLE `po`
   ADD PRIMARY KEY (`id_po`);
 
 --
--- Indexes for table `produk`
+-- Indeks untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `analisis`
+-- AUTO_INCREMENT untuk tabel `analisis`
 --
 ALTER TABLE `analisis`
   MODIFY `id_analisis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1029;
 
 --
--- AUTO_INCREMENT for table `chatting`
+-- AUTO_INCREMENT untuk tabel `chatting`
 --
 ALTER TABLE `chatting`
-  MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_chatting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `detail_po`
+-- AUTO_INCREMENT untuk tabel `detail_po`
 --
 ALTER TABLE `detail_po`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=649;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=651;
 
 --
--- AUTO_INCREMENT for table `diskon`
+-- AUTO_INCREMENT untuk tabel `diskon`
 --
 ALTER TABLE `diskon`
   MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `kritik_saran`
+-- AUTO_INCREMENT untuk tabel `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
   MODIFY `id_kritik_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `pelanggan`
+-- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
   MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=582;
 
 --
--- AUTO_INCREMENT for table `po`
+-- AUTO_INCREMENT untuk tabel `po`
 --
 ALTER TABLE `po`
-  MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=644;
+  MODIFY `id_po` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=645;
 
 --
--- AUTO_INCREMENT for table `produk`
+-- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

@@ -4,8 +4,8 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb__links">
-					<a href="./index.html"><i class="fa fa-home"></i> Home</a>
-					<a href="./blog.html">Blog</a>
+					<a href="<?= base_url('Pelanggan/cHome') ?>"><i class="fa fa-home"></i> Home</a>
+					<span>Chatting</span>
 				</div>
 			</div>
 		</div>
@@ -20,21 +20,7 @@
 			<div class="col-lg-8 col-md-8">
 				<div class="blog__details__content">
 
-					<div class="blog__details__btns">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6">
-								<div class="blog__details__btn__item">
-									<h6><a href="#"><i class="fa fa-angle-left"></i> Previous posts</a></h6>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6">
-								<div class="blog__details__btn__item blog__details__btn__item--next">
-									<h6><a href="#">Next posts <i class="fa fa-angle-right"></i></a></h6>
-								</div>
-							</div>
 
-						</div>
-					</div>
 					<div class="row">
 						<div class="col-lg-12">
 							<?php

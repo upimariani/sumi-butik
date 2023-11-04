@@ -56,6 +56,7 @@
 									<th scope="col">Nama Pelanggan</th>
 									<th scope="col">Tanggal Transaksi</th>
 									<th scope="col">Isi Kritik Saran</th>
+									<th scope="col">Nama Produk</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -68,6 +69,7 @@
 										<td><?= $value->nm_pel ?></td>
 										<td><?= $value->tgl_po ?></td>
 										<td><?= $value->isi_kritik_saran ?></td>
+										<td><?= $value->nama_produk ?></td>
 
 									</tr>
 								<?php
