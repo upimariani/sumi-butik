@@ -75,6 +75,14 @@
 				<div class="cart__btn">
 					<a href="<?= base_url('Pelanggan/cPesananSaya') ?>">Kembali</a>
 					<?php
+					if ($transaksi['po']->bukti_pembayaran == '0') {
+
+					?>
+						<a class="btn btn-danger" href="<?= base_url('Pelanggan/cPesananSaya/batalkan_pesanan/' . $transaksi['po']->id_po) ?>">Batalkan Pesanan</a>
+					<?php
+					}
+					?>
+					<?php
 					if ($transaksi['po']->status_order == '3') {
 					?>
 						<a class="btn btn-success" href="<?= base_url('Pelanggan/cPesananSaya/pesanan_diterima/' .  $transaksi['po']->id_po) ?>">Pesanan Diterima</a>

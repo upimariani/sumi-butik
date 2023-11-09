@@ -64,7 +64,7 @@ class cCheckout extends CI_Controller
 			$this->db->insert('detail_po', $detail);
 		}
 		$this->cart->destroy();
-		redirect('Pelanggan/cHome');
+		redirect('Pelanggan/cPesananSaya');
 	}
 }
 

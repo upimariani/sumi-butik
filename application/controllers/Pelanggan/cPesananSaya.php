@@ -77,6 +77,17 @@ class cPesananSaya extends CI_Controller
 		$this->session->set_flashdata('success', 'Kritik dan Saran Berhasil Dikirim!');
 		redirect('Pelanggan/cPesananSaya/detail_pesanan/' . $id, 'refresh');
 	}
+	public function batalkan_pesanan($id)
+	{
+		$this->db->where('id_po', $id);
+		$this->db->delete('po');
+
+		$this->db->where('id_po', $id);
+		$this->db->delete('detail_po');
+
+		$this->session->set_flashdata('success', 'Pesanan Berhasil Dibatalkan!');
+		redirect('Pelanggan/cPesananSaya', 'refresh');
+	}
 }
 
 /* End of file cPesananSaya.php */
