@@ -24,7 +24,16 @@ class cAnalisis extends CI_Controller
 		$norm_f = array();
 		$norm_m = array();
 
-		// echo '<table border="1">';
+		echo '<table border="1">';
+		echo '<tr>';
+		echo '<td>No</td>';
+		echo '<td>Id Pelanggan</td>';
+		echo '<td>Recency</td>';
+		echo '<td>Frequency</td>';
+		echo '<td>Monetary</td>';
+		echo '<td>Lenght</td>';
+		echo '</tr>';
+		$no = 1;
 		foreach ($data['all'] as $key => $value) {
 			$akhir = date_create($value->akhir_transaksi);
 			$awal = date_create($value->awal_transaksi);
@@ -37,14 +46,16 @@ class cAnalisis extends CI_Controller
 			$pelanggan[] = $value->id_pelanggan;
 
 
-			// echo '<tr>';
-			// echo '<td>' . $value->id_pelanggan . '</td>';
-			// echo '<td>' . $value->recency . '</td>';
-			// echo '<td>' . $value->frequency . '</td>';
-			// echo '<td>' . $value->monetary . '</td>';
-			// echo '</tr>';
+			echo '<tr>';
+			echo '<td>' . $no++ . '</td>';
+			echo '<td>' . $value->id_pelanggan . '</td>';
+			echo '<td>' . $value->recency . '</td>';
+			echo '<td>' . $value->frequency . '</td>';
+			echo '<td>' . $value->monetary . '</td>';
+			echo '<td>' . $day->days . '</td>';
+			echo '</tr>';
 		}
-		// echo '</table>';
+		echo '</table>';
 
 		$min_l = min($length);
 		$max_l = max($length);
@@ -76,6 +87,9 @@ class cAnalisis extends CI_Controller
 			$norm_m[] = round(($monetary[$c] - $min_m) / ($max_m - $min_m), 2);
 		}
 
+		echo 'Min :' . $min_r . ' | ' . $min_f . ' | ' . $min_m . ' | ' . $min_l;
+		echo '<br>Max :' . $max_r . ' | ' . $max_f . ' | ' . $max_m . ' | ' . $max_l;
+		echo '<hr>';
 		//menentukan nilai centroid 1
 		$c1_l = $norm_l[0];
 		$c1_r = $norm_r[0];
@@ -88,46 +102,52 @@ class cAnalisis extends CI_Controller
 		$c2_f = $norm_f[1];
 		$c2_m = $norm_m[1];
 
-
-		// echo '<table border="1">';
-		// echo '<tr>';
-		// echo '<td>R</td>';
-		// echo '<td>F</td>';
-		// echo '<td>M</td>';
-		// echo '<td>Centroid 1</td>';
-		// echo '<td>Centroid 2</td>';
-		// echo '<td>Status Klaster</td>';
-		// echo '</tr>';
+		echo '<br>';
+		echo '<table border="1">';
+		echo '<tr>';
+		echo '<td>No.</td>';
+		echo '<td>R</td>';
+		echo '<td>F</td>';
+		echo '<td>M</td>';
+		echo '<td>L</td>';
+		echo '<td>Centroid 1</td>';
+		echo '<td>Centroid 2</td>';
+		echo '<td>Status Klaster</td>';
+		echo '</tr>';
 		// menentukan keseluruhan c1 untuk semua pelanggan
 		$klaster1 = array();
 		$centroid1 = array();
 		$centroid2 = array();
+
+		$no2 = 1;
 		for ($d = 0; $d < sizeof($norm_r); $d++) {
 			$centroid1[] = sqrt((pow(($norm_r[$d] - $c1_r), 2)) + (pow(($norm_f[$d] - $c1_f), 2)) + (pow(($norm_m[$d] - $c1_m), 2)) + (pow(($norm_l[$d] - $c1_l), 2)));
 			$centroid2[] = sqrt((pow(($norm_r[$d] - $c2_r), 2)) + (pow(($norm_f[$d] - $c2_f), 2)) + (pow(($norm_m[$d] - $c2_m), 2)) + (pow(($norm_l[$d] - $c2_l), 2)));
-			// echo '<tr>';
-			// echo '<td>' . $norm_r[$d] . '</td>';
-			// echo '<td>' . $norm_f[$d] . '</td>';
-			// echo '<td>' . $norm_m[$d] . '</td>';
-			// echo '<td>' . $centroid1[$d] . '</td>';
-			// echo '<td>' . $centroid2[$d] . '</td>';
+			echo '<tr>';
+			echo '<td>' . $no2++ . '</td>';
+			echo '<td>' . $norm_r[$d] . '</td>';
+			echo '<td>' . $norm_f[$d] . '</td>';
+			echo '<td>' . $norm_m[$d] . '</td>';
+			echo '<td>' . $norm_l[$d] . '</td>';
+			echo '<td>' . $centroid1[$d] . '</td>';
+			echo '<td>' . $centroid2[$d] . '</td>';
 
 			$data_min = min($centroid1[$d], $centroid2[$d]);
 			if ($data_min == $centroid1[$d]) {
 				$klaster1[] = '1';
-				// echo '<td>Klaster 1</td>';
+				echo '<td>Klaster 1</td>';
 			} else if ($data_min == $centroid2[$d]) {
 				$klaster1[] = '2';
-				// echo '<td>Klaster 2</td>';
+				echo '<td>Klaster 2</td>';
 			}
-			// echo '</tr>';
+			echo '</tr>';
 		}
-		// echo '</table>';
+		echo '</table>';
 
 		// ------------------------------------melakukan iterasi kedua
 
 		for ($e = 0; $e < sizeof($norm_r); $e++) {
-			$iterasi_pertama[] = ([$norm_r[$e], $norm_f[$e], $norm_m[$e], $centroid1[$e], $centroid2[$e], $klaster1[$e], $norm_l[$e]]);
+			$iterasi_pertama[] = ([$norm_r[$e], $norm_f[$e], $norm_m[$e], $centroid1[$e], $centroid2[$e], $klaster1[$e], $norm_l[$e], $norm_l[$e]]);
 		}
 
 		$c1_l2 = 0;
@@ -163,30 +183,60 @@ class cAnalisis extends CI_Controller
 		$k_c1_l = $c1_l2 / $jml_c1;
 		$k_c1_r = $c1_r2 / $jml_c1;
 		$k_c1_f = $c1_f2 / $jml_c1;
-		$k_c1_m = $c1_f2 / $jml_c1;
+		$k_c1_m = $c1_m2 / $jml_c1;
 
 		$k_c2_l = $c2_l2 / $jml_c2;
 		$k_c2_r = $c2_r2 / $jml_c2;
 		$k_c2_f = $c2_f2 / $jml_c2;
-		$k_c2_m = $c2_f2 / $jml_c2;
+		$k_c2_m = $c2_m2 / $jml_c2;
 
+		echo '<br>';
+		echo 'Variabel Baru Iterasi 1 -> L | R | F | M <br>';
+		echo $k_c1_l . ' | ' . $k_c1_r . ' | ' . $k_c1_f . ' | ' . $k_c1_m;
+		echo '<br>';
+		echo '<hr>';
+
+		echo '<br>';
+		echo '<table border="1">';
+		echo '<tr>';
+		echo '<td>No.</td>';
+		echo '<td>R</td>';
+		echo '<td>F</td>';
+		echo '<td>M</td>';
+		echo '<td>L</td>';
+		echo '<td>Centroid 1</td>';
+		echo '<td>Centroid 2</td>';
+		echo '<td>Status Klaster</td>';
+		echo '</tr>';
+		$no2 = 1;
 		for ($f = 0; $f < sizeof($iterasi_pertama); $f++) {
 			$centroid12[] = sqrt((pow(($iterasi_pertama[$f][0] - $k_c1_r), 2)) + (pow(($iterasi_pertama[$f][1] - $k_c1_f), 2)) + (pow(($iterasi_pertama[$f][2] - $k_c1_m), 2)) + (pow(($iterasi_pertama[$f][6] - $k_c1_l), 2)));
 			$centroid22[] = sqrt((pow(($iterasi_pertama[$f][0] - $k_c2_r), 2)) + (pow(($iterasi_pertama[$f][1] - $k_c2_f), 2)) + (pow(($iterasi_pertama[$f][2] - $k_c2_m), 2)) + (pow(($iterasi_pertama[$f][6] - $k_c2_l), 2)));
-
+			echo '<tr>';
+			echo '<td>' . $no2++ . '</td>';
+			echo '<td>' . $iterasi_pertama[$f][0] . '</td>';
+			echo '<td>' . $iterasi_pertama[$f][1] . '</td>';
+			echo '<td>' . $iterasi_pertama[$f][2] . '</td>';
+			echo '<td>' . $iterasi_pertama[$f][7] . '</td>';
+			echo '<td>' . $centroid12[$f] . '</td>';
+			echo '<td>' . $centroid22[$f] . '</td>';
 			// echo $iterasi_pertama[$f][0] . ' | ' . $iterasi_pertama[$f][1] . ' | ' . $iterasi_pertama[$f][2] . ' | ' . $centroid12[$f] . ' | ' . $centroid22[$f];
 			$data_min2 = min($centroid12[$f], $centroid22[$f]);
 			if ($data_min2 == $centroid12[$f]) {
 				$klaster2[] = '1';
+				echo '<td>Klaster 1</td>';
 				// echo 'Klaster 1';
 			} else if ($data_min2 == $centroid22[$f]) {
 				$klaster2[] = '2';
 				// echo 'Klaster 2';
+				echo '<td>Klaster 2</td>';
 			}
 			// echo '<br>';
+			echo '</tr>';
 		}
+		echo '</table>';
 
-		//iterasi ketiga ---------------------------
+		//iterasi ketiga ----------------------------------------------------------------------------------
 		for ($f = 0; $f < sizeof($norm_r); $f++) {
 			$iterasi_kedua[] = ([$norm_r[$f], $norm_f[$f], $norm_m[$f], $centroid12[$f], $centroid22[$f], $klaster2[$f], $norm_l[$f]]);
 		}
@@ -207,7 +257,7 @@ class cAnalisis extends CI_Controller
 		for ($iterasi3 = 0; $iterasi3 < sizeof($iterasi_kedua); $iterasi3++) {
 			if ($iterasi_kedua[$iterasi3][5] == '1') {
 				// echo $iterasi_kedua[$iterasi][0] . ' | ' . $iterasi_kedua[$iterasi][5];
-				// echo '<br>';S
+				// echo '<br>';
 				$jml_c3 += 1;
 				$c1_r3 += $iterasi_kedua[$iterasi3][0];
 				$c1_f3 += $iterasi_kedua[$iterasi3][1];
@@ -231,24 +281,54 @@ class cAnalisis extends CI_Controller
 		$k_c22_f = $c2_f3 / $jml_c4;
 		$k_c22_m = $c2_f3 / $jml_c4;
 
+		echo '<br>';
+		echo 'Variabel Baru Iterasi 2 -> L | R | F | M <br>';
+		echo $k_c12_l . ' | ' . $k_c12_r . ' | ' . $k_c12_f . ' | ' . $k_c12_m;
+		echo '<br>';
+		echo '<hr>';
+
+
+		echo '<br>';
+		echo '<table border="1">';
+		echo '<tr>';
+		echo '<td>No.</td>';
+		echo '<td>R</td>';
+		echo '<td>F</td>';
+		echo '<td>M</td>';
+		echo '<td>L</td>';
+		echo '<td>Centroid 1</td>';
+		echo '<td>Centroid 2</td>';
+		echo '<td>Status Klaster</td>';
+		echo '</tr>';
+		$no3 = 1;
 		for ($f = 0; $f < sizeof($iterasi_kedua); $f++) {
 			$centroid13[] = sqrt((pow(($iterasi_kedua[$f][0] - $k_c12_r), 2)) + (pow(($iterasi_kedua[$f][1] - $k_c12_f), 2)) + (pow(($iterasi_kedua[$f][2] - $k_c12_m), 2)) + (pow(($iterasi_kedua[$f][6] - $k_c12_l), 2)));
 			$centroid23[] = sqrt((pow(($iterasi_kedua[$f][0] - $k_c22_r), 2)) + (pow(($iterasi_kedua[$f][1] - $k_c22_f), 2)) + (pow(($iterasi_kedua[$f][2] - $k_c22_m), 2)) + (pow(($iterasi_kedua[$f][6] - $k_c22_l), 2)));
-
-			// echo $iterasi_kedua[$f][0] . ' | ' . $iterasi_kedua[$f][1] . ' | ' . $iterasi_kedua[$f][2] . ' | ' . $centroid12[$f] . ' | ' . $centroid22[$f];
+			echo '<tr>';
+			echo '<td>' . $no3++ . '</td>';
+			echo '<td>' . $iterasi_kedua[$f][0] . '</td>';
+			echo '<td>' . $iterasi_kedua[$f][1] . '</td>';
+			echo '<td>' . $iterasi_kedua[$f][2] . '</td>';
+			echo '<td>' . $iterasi_kedua[$f][6] . '</td>';
+			echo '<td>' . $centroid12[$f] . '</td>';
+			echo '<td>' . $centroid22[$f] . '</td>';
+			// echo $iterasi_kedua[$f][0] . ' | ' . $iterasi_kedua[$f][1] . ' | ' . $iterasi_kedua[$f][2] . ' | ' . $centroid13[$f] . ' | ' . $centroid23[$f];
 			$data_min3 = min($centroid13[$f], $centroid23[$f]);
 			if ($data_min3 == $centroid13[$f]) {
 				$klaster3[] = '1';
+				echo '<td>Klaster 1</td>';
 				// echo 'Klaster 1';
 			} else if ($data_min3 == $centroid23[$f]) {
 				$klaster3[] = '2';
 				// echo 'Klaster 2';
+				echo '<td>Klaster 2</td>';
 			}
-			// echo '<br>';
+			echo '</tr>';
 		}
+		echo '</table>';
 
 
-		//iterasi keempat ---------------------------
+		//iterasi keempat ------------------------------------------------------
 		for ($f = 0; $f < sizeof($norm_r); $f++) {
 			$iterasi_ketiga[] = ([$norm_r[$f], $norm_f[$f], $norm_m[$f], $centroid13[$f], $centroid23[$f], $klaster3[$f], $norm_l[$f]]);
 		}
@@ -269,7 +349,7 @@ class cAnalisis extends CI_Controller
 		for ($iterasi4 = 0; $iterasi4 < sizeof($iterasi_ketiga); $iterasi4++) {
 			if ($iterasi_ketiga[$iterasi4][5] == '1') {
 				// echo $iterasi_kedua[$iterasi][0] . ' | ' . $iterasi_kedua[$iterasi][5];
-				// echo '<br>';S
+				// echo '<br>';
 				$jml_c5 += 1;
 				$c1_r4 += $iterasi_ketiga[$iterasi4][0];
 				$c1_f4 += $iterasi_ketiga[$iterasi4][1];
@@ -286,28 +366,57 @@ class cAnalisis extends CI_Controller
 		$k_c13_l = $c1_l4 / $jml_c5;
 		$k_c13_r = $c1_r4 / $jml_c5;
 		$k_c13_f = $c1_f4 / $jml_c5;
-		$k_c13_m = $c1_f4 / $jml_c5;
+		$k_c13_m = $c1_m4 / $jml_c5;
 
 		$k_c23_l = $c2_r4 / $jml_c6;
 		$k_c23_r = $c2_r4 / $jml_c6;
 		$k_c23_f = $c2_f4 / $jml_c6;
-		$k_c23_m = $c2_f4 / $jml_c6;
+		$k_c23_m = $c2_m4 / $jml_c6;
 
+		echo '<br>';
+		echo 'Variabel Baru Iterasi 3 -> L | R | F | M <br>';
+		echo $k_c13_l . ' | ' . $k_c13_r . ' | ' . $k_c13_f . ' | ' . $k_c13_m;
+		echo '<br>';
+		echo '<hr>';
+
+		echo '<br>';
+		echo '<table border="1">';
+		echo '<tr>';
+		echo '<td>No.</td>';
+		echo '<td>R</td>';
+		echo '<td>F</td>';
+		echo '<td>M</td>';
+		echo '<td>L</td>';
+		echo '<td>Centroid 1</td>';
+		echo '<td>Centroid 2</td>';
+		echo '<td>Status Klaster</td>';
+		echo '</tr>';
+		$no3 = 1;
 		for ($f = 0; $f < sizeof($iterasi_ketiga); $f++) {
 			$centroid14[] = sqrt((pow(($iterasi_ketiga[$f][0] - $k_c13_r), 2)) + (pow(($iterasi_ketiga[$f][1] - $k_c13_f), 2)) + (pow(($iterasi_ketiga[$f][2] - $k_c13_m), 2)) + (pow(($iterasi_ketiga[$f][6] - $k_c13_l), 2)));
 			$centroid24[] = sqrt((pow(($iterasi_ketiga[$f][0] - $k_c23_r), 2)) + (pow(($iterasi_ketiga[$f][1] - $k_c23_f), 2)) + (pow(($iterasi_ketiga[$f][2] - $k_c23_m), 2)) + (pow(($iterasi_ketiga[$f][6] - $k_c23_l), 2)));
-
-			// echo $iterasi_kedua[$f][0] . ' | ' . $iterasi_kedua[$f][1] . ' | ' . $iterasi_kedua[$f][2] . ' | ' . $centroid12[$f] . ' | ' . $centroid22[$f];
+			echo '<tr>';
+			echo '<td>' . $no3++ . '</td>';
+			echo '<td>' . $iterasi_ketiga[$f][0] . '</td>';
+			echo '<td>' . $iterasi_ketiga[$f][1] . '</td>';
+			echo '<td>' . $iterasi_ketiga[$f][2] . '</td>';
+			echo '<td>' . $iterasi_ketiga[$f][6] . '</td>';
+			echo '<td>' . $centroid12[$f] . '</td>';
+			echo '<td>' . $centroid22[$f] . '</td>';
+			// echo $iterasi_ketiga[$f][0] . ' | ' . $iterasi_ketiga[$f][1] . ' | ' . $iterasi_ketiga[$f][2] . ' | ' . $centroid12[$f] . ' | ' . $centroid22[$f];
 			$data_min3 = min($centroid14[$f], $centroid24[$f]);
 			if ($data_min3 == $centroid14[$f]) {
 				$klaster4[] = '0';
+				echo '<td>Klaster 1</td>';
 				// echo 'Klaster 1';
 			} else if ($data_min3 == $centroid24[$f]) {
 				$klaster4[] = '1';
+				echo '<td>Klaster 2</td>';
 				// echo 'Klaster 2';
 			}
-			// echo '<br>';
+			echo '</tr>';
 		}
+		echo '</table>';
 
 		for ($k = 0; $k < sizeof($klaster2); $k++) {
 			echo $klaster2[$k] . '|' . $klaster1[$k] . '|' . $klaster3[$k] . '|' . $klaster4[$k] . 'Id Pelanggan' . $pelanggan[$k];
